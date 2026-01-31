@@ -5,7 +5,7 @@ const techStack = [
   {
     category: '编排',
     icon: Layers,
-    tech: 'LangGraph / 自研 ReAct 循环',
+    tech: 'LangGraph / ReAct 循环',
     color: 'from-blue-500 to-cyan-500',
     description: '智能体编排引擎'
   },
@@ -56,7 +56,7 @@ export function Slide9() {
           >
             {/* Glow Effect */}
             <div className={`absolute inset-0 bg-gradient-to-br ${item.color} rounded-2xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity`}></div>
-            
+
             {/* Card */}
             <div className="relative bg-white/5 backdrop-blur-lg rounded-2xl p-8 border border-white/10 hover:border-white/20 transition-all h-full">
               <div className="flex items-start gap-5">
@@ -90,36 +90,36 @@ export function Slide9() {
         <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-2xl blur-2xl opacity-10"></div>
         <div className="relative bg-white/5 backdrop-blur-lg rounded-2xl p-8 border border-white/10">
           <h3 className="text-2xl font-bold text-white mb-6 text-center">系统流程</h3>
-          
+
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="bg-blue-500/20 backdrop-blur-sm rounded-xl px-6 py-4 border border-blue-400/30 text-center">
               <div className="text-blue-300 text-sm mb-1">Browser</div>
               <div className="text-white font-semibold">用户界面</div>
             </div>
-            
+
             <div className="text-purple-400 text-2xl">→</div>
-            
+
             <div className="bg-cyan-500/20 backdrop-blur-sm rounded-xl px-6 py-4 border border-cyan-400/30 text-center">
               <div className="text-cyan-300 text-sm mb-1">WebSocket</div>
               <div className="text-white font-semibold">实时通信</div>
             </div>
-            
+
             <div className="text-purple-400 text-2xl">→</div>
-            
+
             <div className="bg-purple-500/20 backdrop-blur-sm rounded-xl px-6 py-4 border border-purple-400/30 text-center">
               <div className="text-purple-300 text-sm mb-1">Chatbot Agent</div>
               <div className="text-white font-semibold">意图理解</div>
             </div>
-            
+
             <div className="text-purple-400 text-2xl">→</div>
-            
+
             <div className="bg-pink-500/20 backdrop-blur-sm rounded-xl px-6 py-4 border border-pink-400/30 text-center">
               <div className="text-pink-300 text-sm mb-1">ETL Agent</div>
               <div className="text-white font-semibold">代码生成</div>
             </div>
-            
+
             <div className="text-purple-400 text-2xl">→</div>
-            
+
             <div className="bg-orange-500/20 backdrop-blur-sm rounded-xl px-6 py-4 border border-orange-400/30 text-center">
               <div className="text-orange-300 text-sm mb-1">Spark</div>
               <div className="text-white font-semibold">执行校验</div>

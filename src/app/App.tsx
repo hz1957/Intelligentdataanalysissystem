@@ -11,10 +11,11 @@ import { Slide7 } from '@/app/components/Slide7';
 import { Slide8 } from '@/app/components/Slide8';
 import { Slide9 } from '@/app/components/Slide9';
 import { Slide10 } from '@/app/components/Slide10';
+import { Slide11 } from '@/app/components/Slide11';
 
 export default function App() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const totalSlides = 10;
+  const totalSlides = 11;
 
   const slides = [
     <Slide1 key="slide-1" />,
@@ -25,6 +26,7 @@ export default function App() {
     <Slide6 key="slide-6" />,
     <Slide7 key="slide-7" />,
     <Slide8 key="slide-8" />,
+    <Slide11 key="slide-11" />,
     <Slide9 key="slide-9" />,
     <Slide10 key="slide-10" />
   ];
@@ -67,9 +69,11 @@ export default function App() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -100 }}
             transition={{ duration: 0.5, ease: 'easeInOut' }}
-            className="absolute inset-0 flex items-center justify-center p-8"
+            className="absolute inset-0 overflow-y-auto"
           >
-            {slides[currentSlide]}
+            <div className="min-h-full w-full flex items-center justify-center p-8">
+              {slides[currentSlide]}
+            </div>
           </motion.div>
         </AnimatePresence>
       </div>
@@ -95,11 +99,10 @@ export default function App() {
               aria-label={`Go to slide ${index + 1}`}
             >
               <Circle
-                className={`w-3 h-3 transition-all ${
-                  index === currentSlide
-                    ? 'fill-white text-white scale-125'
-                    : 'text-white/40 hover:text-white/60'
-                }`}
+                className={`w-3 h-3 transition-all ${index === currentSlide
+                  ? 'fill-white text-white scale-125'
+                  : 'text-white/40 hover:text-white/60'
+                  }`}
               />
             </button>
           ))}
