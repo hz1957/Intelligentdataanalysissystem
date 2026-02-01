@@ -59,7 +59,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="size-full bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex flex-col">
+    <div className="size-full bg-slate-900 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-500/20 via-slate-900 to-slate-900 flex flex-col text-slate-100">
       {/* Slide Container */}
       <div className="flex-1 relative overflow-hidden">
         <AnimatePresence mode="wait">
