@@ -51,9 +51,9 @@ export function Slide1() {
         transition={{ duration: 0.6, delay: 0.7 }}
         className="text-xl text-purple-200/80 max-w-3xl mx-auto mb-12 leading-relaxed"
       >
-        通过多智能体 (Multi-Agent) 架构，弥合自然语言的灵活性与
+        通过多智能体 (Multi-Agent) 架构，链接自然语言的灵活性与
         <br />
-        临床数据工程 (CDISC/SDTM) 的严谨性之间的鸿沟
+        临床数据工程 (CDISC/SDTM) 的严谨性
       </motion.p>
 
       <motion.div
