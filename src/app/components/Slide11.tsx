@@ -289,7 +289,7 @@ function Connection({ start, end, color, label, delay, duration, curvature = 0 }
                 <motion.foreignObject
                     width="100"
                     height="30"
-                    style={{ offsetPath: `path("${path}")` }}
+                    style={{ offsetPath: `path("${path}")`, offsetRotate: "0deg" }}
                     animate={{
                         offsetDistance: ["0%", "100%"],
                         opacity: [0, 1, 1, 0]
