@@ -95,26 +95,29 @@ function ChatFlow() {
                 {/* 2. Browser -> WebSocket */}
                 <Connection start={refs.browser} end={refs.ws} color="#4ADE80" label="JSON" delay={1.5} duration={1.0} />
 
-                {/* 3a. WebSocket -> DB */}
-                <Connection start={refs.ws} end={refs.db} color="#818CF8" label="Persist" delay={2.5} duration={1.0} />
+                {/* 3. WebSocket -> DB (先查询数据库) */}
+                <Connection start={refs.ws} end={refs.db} color="#818CF8" label="Query" delay={2.5} duration={1.0} />
 
-                {/* 3b. WebSocket -> Router */}
-                <Connection start={refs.ws} end={refs.router} color="#FCD34D" label="Analyze" delay={2.5} duration={1.0} curvature={-0.2} />
+                {/* 4. DB -> WebSocket (返回数据后才调用 Router) */}
+                <Connection start={refs.db} end={refs.ws} color="#818CF8" label="Schema" delay={3.5} duration={1.0} curvature={0.3} />
 
-                {/* 4. Router -> WebSocket */}
-                <Connection start={refs.router} end={refs.ws} color="#FCD34D" label="Selected Tables" delay={3.5} duration={1.0} curvature={0.2} />
+                {/* 5. WebSocket -> Router (拿到数据后分析) */}
+                <Connection start={refs.ws} end={refs.router} color="#FCD34D" label="Analyze" delay={4.5} duration={1.0} curvature={-0.2} />
 
-                {/* 5. WebSocket -> Browser (Table Cards) */}
-                <Connection start={refs.ws} end={refs.browser} color="#FCD34D" label="Table Cards" delay={4.5} duration={1.0} curvature={-0.2} />
+                {/* 6. Router -> WebSocket */}
+                <Connection start={refs.router} end={refs.ws} color="#FCD34D" label="Selected Tables" delay={5.5} duration={1.0} curvature={0.2} />
 
-                {/* 6. WebSocket -> Generator */}
-                <Connection start={refs.ws} end={refs.generator} color="#C084FC" label="Prompt" delay={4.5} duration={1.0} curvature={0.2} />
+                {/* 7. WebSocket -> Browser (Table Cards) */}
+                <Connection start={refs.ws} end={refs.browser} color="#FCD34D" label="Table Cards" delay={6.5} duration={1.0} curvature={-0.2} />
 
-                {/* 7. Generator -> WebSocket */}
-                <Connection start={refs.generator} end={refs.ws} color="#C084FC" label="Tokens" delay={6.0} duration={1.0} curvature={-0.2} />
+                {/* 8. WebSocket -> Generator */}
+                <Connection start={refs.ws} end={refs.generator} color="#C084FC" label="Prompt" delay={6.5} duration={1.0} curvature={0.2} />
 
-                {/* 8. WebSocket -> Browser (Stream) */}
-                <Connection start={refs.ws} end={refs.browser} color="#C084FC" label="Stream" delay={7.0} duration={1.0} curvature={0.2} />
+                {/* 9. Generator -> WebSocket */}
+                <Connection start={refs.generator} end={refs.ws} color="#C084FC" label="Tokens" delay={8.0} duration={1.0} curvature={-0.2} />
+
+                {/* 10. WebSocket -> Browser (Stream) */}
+                <Connection start={refs.ws} end={refs.browser} color="#C084FC" label="Stream" delay={9.0} duration={1.0} curvature={0.2} />
             </Canvas>
 
             <div className="absolute bottom-8 left-0 right-0 text-center text-white/50 text-sm italic">
