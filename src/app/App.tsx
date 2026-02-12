@@ -11,22 +11,27 @@ import { Slide7 } from '@/app/components/Slide7';
 import { Slide8 } from '@/app/components/Slide8';
 import { Slide9 } from '@/app/components/Slide9';
 import { Slide10 } from '@/app/components/Slide10';
-import { Slide11 } from '@/app/components/Slide11';
+import { SlideSequence } from '@/app/components/SlideSequence';
+import { SlideConversation } from '@/app/components/SlideConversation';
+
+import { SlideContext } from '@/app/components/SlideContext';
 
 export default function App() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const totalSlides = 11;
+  const totalSlides = 13;
 
   const slides = [
     <Slide1 key="slide-1" />,
     <Slide2 key="slide-2" />,
     <Slide3 key="slide-3" />,
     <Slide4 key="slide-4" />,
+    <SlideConversation key="slide-conversation" />,
     <Slide5 key="slide-5" />,
     <Slide6 key="slide-6" />,
     <Slide7 key="slide-7" />,
+    <SlideContext key="slide-context" />,
     <Slide8 key="slide-8" />,
-    <Slide11 key="slide-11" />,
+    <SlideSequence key="slide-sequence" />,
     <Slide9 key="slide-9" />,
     <Slide10 key="slide-10" />
   ];

@@ -5,9 +5,9 @@ const techStack = [
   {
     category: '编排',
     icon: Layers,
-    tech: 'LangGraph / ReAct 循环',
+    tech: 'Blueprint-Executor',
     color: 'from-blue-500 to-cyan-500',
-    description: '智能体编排引擎'
+    description: 'Plan-then-Execute 智能体编排'
   },
   {
     category: '后端',
@@ -21,14 +21,14 @@ const techStack = [
     icon: Zap,
     tech: 'Apache Spark (本地 Session)',
     color: 'from-blue-600 to-cyan-600',
-    description: 'SQL 实时校验引擎'
+    description: 'SQL 实时校验 + Retry 回传'
   },
   {
     category: '通信',
     icon: Radio,
-    tech: 'WebSocket (流式) + REST (Handoff)',
+    tech: 'WebSocket (流式) + REST',
     color: 'from-cyan-600 to-blue-500',
-    description: '实时双向通信'
+    description: '实时双向通信 + 版本快照'
   }
 ];
 
@@ -39,92 +39,129 @@ export function Slide9() {
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6 }}
-        className="text-center mb-16"
+        className="text-center mb-8"
       >
-        <h2 className="text-5xl font-bold text-white mb-4">技术栈</h2>
-        <p className="text-xl text-blue-200/80">Tech Stack - 构建强大的技术基础</p>
+        <h2 className="text-5xl font-bold text-white mb-3">系统架构</h2>
+        <p className="text-xl text-blue-200/80">Tech Stack & System Flow</p>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {techStack.map((item, index) => (
-          <motion.div
-            key={index}
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-            className="group relative"
-          >
-            {/* Glow Effect */}
-            <div className={`absolute inset-0 bg-gradient-to-br ${item.color} rounded-2xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity`}></div>
-
-            {/* Card */}
-            <div className="relative bg-white/5 backdrop-blur-lg rounded-2xl p-8 border border-white/10 hover:border-white/20 transition-all h-full">
-              <div className="flex items-start gap-5">
-                <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${item.color} flex items-center justify-center shadow-lg flex-shrink-0`}>
-                  <item.icon className="w-7 h-7 text-white" />
-                </div>
-                <div className="flex-1">
-                  <div className="text-white/60 text-sm font-semibold mb-2 uppercase tracking-wider">
-                    {item.category}
-                  </div>
-                  <h3 className="text-2xl font-bold text-white mb-3 leading-tight">
-                    {item.tech}
-                  </h3>
-                  <p className="text-purple-200/80 text-sm leading-relaxed">
-                    {item.description}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        ))}
-      </div>
-
-      {/* Architecture Diagram */}
+      {/* Tech Stack Cards */}
       <motion.div
-        initial={{ y: 30, opacity: 0 }}
+        initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.8 }}
-        className="mt-12 relative"
+        transition={{ duration: 0.6, delay: 0.2 }}
+        className="grid grid-cols-4 gap-3 mb-5"
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-2xl blur-2xl opacity-10"></div>
-        <div className="relative bg-white/5 backdrop-blur-lg rounded-2xl p-8 border border-white/10">
-          <h3 className="text-2xl font-bold text-white mb-6 text-center">系统流程</h3>
-
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="bg-blue-500/20 backdrop-blur-sm rounded-xl px-6 py-4 border border-blue-400/30 text-center">
-              <div className="text-blue-300 text-sm mb-1">Browser</div>
-              <div className="text-white font-semibold">用户界面</div>
-            </div>
-
-            <div className="text-purple-400 text-2xl">→</div>
-
-            <div className="bg-cyan-500/20 backdrop-blur-sm rounded-xl px-6 py-4 border border-cyan-400/30 text-center">
-              <div className="text-cyan-300 text-sm mb-1">WebSocket</div>
-              <div className="text-white font-semibold">实时通信</div>
-            </div>
-
-            <div className="text-purple-400 text-2xl">→</div>
-
-            <div className="bg-purple-500/20 backdrop-blur-sm rounded-xl px-6 py-4 border border-purple-400/30 text-center">
-              <div className="text-purple-300 text-sm mb-1">Chatbot Agent</div>
-              <div className="text-white font-semibold">意图理解</div>
-            </div>
-
-            <div className="text-purple-400 text-2xl">→</div>
-
-            <div className="bg-pink-500/20 backdrop-blur-sm rounded-xl px-6 py-4 border border-pink-400/30 text-center">
-              <div className="text-pink-300 text-sm mb-1">ETL Agent</div>
-              <div className="text-white font-semibold">代码生成</div>
-            </div>
-
-            <div className="text-purple-400 text-2xl">→</div>
-
-            <div className="bg-orange-500/20 backdrop-blur-sm rounded-xl px-6 py-4 border border-orange-400/30 text-center">
-              <div className="text-orange-300 text-sm mb-1">Spark</div>
-              <div className="text-white font-semibold">执行校验</div>
+        {techStack.map((item, index) => (
+          <div key={index} className="relative group">
+            <div className={`absolute inset-0 bg-gradient-to-br ${item.color} rounded-xl blur-xl opacity-15`}></div>
+            <div className="relative bg-white/5 backdrop-blur-lg rounded-xl p-4 border border-white/10 h-full">
+              <div className="flex items-center gap-2 mb-2">
+                <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${item.color} flex items-center justify-center`}>
+                  <item.icon className="w-4 h-4 text-white" />
+                </div>
+                <span className="text-white/50 text-[10px] uppercase tracking-wider">{item.category}</span>
+              </div>
+              <h3 className="text-white font-bold text-sm mb-1">{item.tech}</h3>
+              <p className="text-white/40 text-[10px]">{item.description}</p>
             </div>
           </div>
+        ))}
+      </motion.div>
+
+      {/* System Flow */}
+      <motion.div
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.4 }}
+        className="bg-white/5 backdrop-blur-lg rounded-2xl p-5 border border-white/10"
+      >
+        <h3 className="text-sm font-bold text-white mb-4 text-center">系统交互流程</h3>
+
+        <div className="flex items-start gap-2">
+          {/* Browser */}
+          <div className="w-[10%] flex flex-col items-center">
+            <div className="bg-blue-500/20 rounded-lg px-2 py-3 border border-blue-500/30 text-center w-full">
+              <div className="text-blue-300 text-[10px] font-bold">Browser</div>
+              <div className="text-white/40 text-[9px]">用户界面</div>
+            </div>
+          </div>
+
+          <div className="flex flex-col items-center justify-center self-center">
+            <div className="text-[9px] text-white/30">WS</div>
+            <div className="text-white/20">→</div>
+          </div>
+
+          {/* Chatbot Agent */}
+          <div className="w-[30%]">
+            <div className="bg-cyan-500/10 rounded-lg p-3 border border-cyan-500/20">
+              <div className="text-cyan-300 text-[10px] font-bold mb-2 text-center">Chatbot Agent</div>
+              <div className="flex gap-1">
+                <div className="flex-1 bg-black/30 rounded p-1.5 text-center">
+                  <div className="text-[8px] text-white/50">双通道</div>
+                  <div className="text-[8px] text-cyan-300/70">检索</div>
+                </div>
+                <div className="text-white/15 self-center text-[8px]">→</div>
+                <div className="flex-1 bg-black/30 rounded p-1.5 text-center">
+                  <div className="text-[8px] text-white/50">Router</div>
+                  <div className="text-[8px] text-cyan-300/70">LLM</div>
+                </div>
+                <div className="text-white/15 self-center text-[8px]">→</div>
+                <div className="flex-1 bg-black/30 rounded p-1.5 text-center">
+                  <div className="text-[8px] text-white/50">Generator</div>
+                  <div className="text-[8px] text-cyan-300/70">LLM</div>
+                </div>
+              </div>
+              <div className="mt-1.5 text-[8px] text-white/25 text-center">対話压缩 + 版本快照</div>
+            </div>
+          </div>
+
+          <div className="flex flex-col items-center justify-center self-center">
+            <div className="text-[9px] text-white/30">Plan</div>
+            <div className="text-white/20">→</div>
+          </div>
+
+          {/* ETL Agent */}
+          <div className="w-[35%]">
+            <div className="bg-purple-500/10 rounded-lg p-3 border border-purple-500/20">
+              <div className="text-purple-300 text-[10px] font-bold mb-2 text-center">ETL Agent (Blueprint-Executor)</div>
+              <div className="flex gap-1">
+                <div className="flex-1 bg-black/30 rounded p-1.5 text-center">
+                  <div className="text-[8px] text-white/50">Planner</div>
+                  <div className="text-[8px] text-purple-300/70">Blueprint</div>
+                </div>
+                <div className="text-white/15 self-center text-[8px]">→</div>
+                <div className="flex-1 bg-black/30 rounded p-1.5 text-center">
+                  <div className="text-[8px] text-white/50">Critic</div>
+                  <div className="text-[8px] text-purple-300/70">验证</div>
+                </div>
+                <div className="text-white/15 self-center text-[8px]">→</div>
+                <div className="flex-1 bg-black/30 rounded p-1.5 text-center">
+                  <div className="text-[8px] text-white/50">Executor</div>
+                  <div className="text-[8px] text-purple-300/70">SQL</div>
+                </div>
+              </div>
+              <div className="mt-1.5 text-[8px] text-white/25 text-center">影响分析 + Changeset / Restructure</div>
+            </div>
+          </div>
+
+          <div className="flex flex-col items-center justify-center self-center">
+            <div className="text-[9px] text-white/30">SQL</div>
+            <div className="text-white/20">⇄</div>
+          </div>
+
+          {/* Spark */}
+          <div className="w-[10%] flex flex-col items-center">
+            <div className="bg-amber-500/20 rounded-lg px-2 py-3 border border-amber-500/30 text-center w-full">
+              <div className="text-amber-300 text-[10px] font-bold">Spark</div>
+              <div className="text-white/40 text-[9px]">校验</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Retry annotation */}
+        <div className="mt-3 flex items-center justify-end gap-2 pr-4">
+          <span className="text-[9px] text-white/25">⇄ Retry-with-Feedback: SQL 校验失败 → Error Log 回传 Executor</span>
         </div>
       </motion.div>
     </div>

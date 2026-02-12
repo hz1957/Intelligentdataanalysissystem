@@ -1,27 +1,39 @@
 import { motion } from 'motion/react';
-import { AlertTriangle, Puzzle, Bug, HelpCircle } from 'lucide-react';
+import { Box, Code2, Rocket, Clock, XCircle, CheckCircle } from 'lucide-react';
 
-const challenges = [
+const comparisons = [
   {
-    icon: Puzzle,
-    title: '复杂性',
-    subtitle: 'Complexity',
-    description: '临床标准 (SDTM/ADaM) 极其复杂，通用的 Text-to-SQL 难以处理',
-    color: 'from-blue-500 to-cyan-500'
+    icon: Box,
+    title: '开源 RAG 框架 (Vanna.ai)',
+    subtitle: '通用方案',
+    drawback: '复杂逻辑处理受限',
+    description: '提供了基础的 RAG 与 Text-to-SQL 框架。在面对垂直领域（如临床数据）的复杂关联查询时，通用检索逻辑较难覆盖特定业务规则。',
+    color: 'bg-white/5',
+    iconColor: 'bg-slate-700/50',
+    border: 'border-white/5',
+    status: 'limit'
   },
   {
-    icon: HelpCircle,
-    title: '模糊性',
-    subtitle: 'Ambiguity',
-    description: '用户的意图是在多轮对话中演进的（上下文依赖），而非单次指令',
-    color: 'from-cyan-500 to-blue-600'
+    icon: Code2,
+    title: '通用大模型 (Claude Skills)',
+    subtitle: '大模型推理',
+    drawback: '端到端响应时延较高',
+    description: '具备优秀的代码生成能力。作为通用推理引擎，单次任务的处理链路较长（~9min），在实时交互场景下存在一定的性能瓶颈。',
+    color: 'bg-white/5',
+    iconColor: 'bg-indigo-500/30',
+    border: 'border-white/5',
+    status: 'limit'
   },
   {
-    icon: Bug,
-    title: '可靠性',
-    subtitle: 'Reliability',
-    description: 'LLM 生成的代码经常存在细微的编译错误（幻觉），导致运行时失败',
-    color: 'from-blue-600 to-cyan-600'
+    icon: Rocket,
+    title: '垂直领域 Agent',
+    subtitle: '自研方案',
+    advantage: '准确性与时效性的平衡',
+    description: '针对特定场景优化的 Agent 架构。引入预计算规划 (Planner) 预置领域知识，配合专用执行器 (Executor) 降低推理开销，提升系统稳定性。',
+    color: 'bg-blue-500/10',
+    iconColor: 'bg-blue-500/50',
+    border: 'border-blue-500/30',
+    status: 'solution'
   }
 ];
 
@@ -32,58 +44,58 @@ export function Slide2() {
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6 }}
-        className="text-center mb-16"
+        className="text-center mb-12"
       >
-        <div className="inline-flex items-center gap-3 mb-6">
-          <AlertTriangle className="w-10 h-10 text-blue-400" />
-          <h2 className="text-5xl font-bold text-white">挑战</h2>
-        </div>
-        <p className="text-xl text-blue-200/80">The "Why" - 为什么需要这个平台？</p>
+        <h2 className="text-4xl font-bold text-white mb-4">技术选型思考</h2>
+        <p className="text-lg text-blue-200/60">为什么选择自研垂直 Agent 架构？</p>
       </motion.div>
 
-      <div className="space-y-6">
-        {challenges.map((challenge, index) => (
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {comparisons.map((item, index) => (
           <motion.div
             key={index}
-            initial={{ x: -50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 + index * 0.15 }}
-            className="group relative"
+            className="group h-full"
           >
-            {/* Glow effect */}
-            <div className={`absolute inset-0 bg-gradient-to-r ${challenge.color} rounded-2xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity`}></div>
-            
             {/* Card */}
-            <div className="relative bg-white/5 backdrop-blur-lg rounded-2xl p-8 border border-white/10 hover:border-white/20 transition-all">
-              <div className="flex items-start gap-6">
-                <div className={`flex-shrink-0 w-16 h-16 rounded-xl bg-gradient-to-br ${challenge.color} flex items-center justify-center shadow-lg`}>
-                  <challenge.icon className="w-8 h-8 text-white" />
+            <div className={`relative h-full backdrop-blur-sm rounded-xl p-6 transition-all flex flex-col ${item.color} border ${item.border}`}>
+              {/* Header */}
+              <div className="flex items-center gap-4 mb-5">
+                <div className={`w-10 h-10 rounded-lg ${item.iconColor} flex items-center justify-center`}>
+                  <item.icon className="w-5 h-5 text-white/90" />
                 </div>
-                <div className="flex-1">
-                  <div className="flex items-baseline gap-3 mb-3">
-                    <h3 className="text-3xl font-bold text-white">{challenge.title}</h3>
-                    <span className="text-sm text-white/50 font-mono uppercase tracking-wider">{challenge.subtitle}</span>
-                  </div>
-                  <p className="text-lg text-blue-200/90 leading-relaxed">{challenge.description}</p>
+                <div>
+                  <h3 className="text-lg font-semibold text-white/90">{item.title}</h3>
+                  <div className="text-xs text-white/40">{item.subtitle}</div>
                 </div>
+              </div>
+
+              {/* Description */}
+              <p className="text-blue-100/70 mb-6 flex-grow text-sm leading-relaxed">
+                {item.description}
+              </p>
+
+              {/* Status/Verdict */}
+              <div className={`mt-auto p-3 rounded-lg border flex items-center gap-2 ${item.status === 'solution'
+                  ? 'bg-blue-500/10 border-blue-500/20'
+                  : 'bg-white/5 border-white/5'
+                }`}>
+                {item.status === 'solution' ? (
+                  <CheckCircle className="w-4 h-4 text-blue-400" />
+                ) : (
+                  <Clock className="w-4 h-4 text-slate-500" />
+                )}
+                <span className={`font-medium text-sm ${item.status === 'solution' ? 'text-blue-300' : 'text-slate-400'
+                  }`}>
+                  {item.status === 'solution' ? item.advantage : item.drawback}
+                </span>
               </div>
             </div>
           </motion.div>
         ))}
       </div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.8 }}
-        className="mt-12 text-center"
-      >
-        <div className="inline-block bg-blue-500/10 backdrop-blur-sm border border-blue-400/20 rounded-xl px-6 py-3">
-          <p className="text-blue-200 text-sm">
-            💡 我们需要一个能够理解临床标准、处理模糊意图、并保证代码可靠性的智能系统
-          </p>
-        </div>
-      </motion.div>
     </div>
   );
 }
