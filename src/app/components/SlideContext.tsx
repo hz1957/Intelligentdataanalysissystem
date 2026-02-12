@@ -69,7 +69,7 @@ export function SlideContext() {
                         <div className="mt-auto pt-4 border-t border-white/5">
                             <div className="flex items-center gap-2 text-xs text-slate-400">
                                 <Database className="w-4 h-4" />
-                                <span>Vector DB (FAISS/Chroma)</span>
+                                <span>Vector DB (FAISS)</span>
                             </div>
                         </div>
                     </div>
