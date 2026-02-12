@@ -40,16 +40,16 @@ export function Slide6() {
           <div className="bg-black/40 rounded-lg p-2.5 border border-white/5 text-[10px] font-mono leading-relaxed">
             <div className="text-white/30">{'{'} "steps": {'['}</div>
             <div className="ml-2 text-white/70">
-              <span className="text-blue-300">step_1</span>: AddSelectColumns <span className="text-white/30">// 选取订单字段</span>
+              <span className="text-blue-300">node_1</span>: AddSelectColumns <span className="text-white/30">// 选取订单字段</span>
             </div>
             <div className="ml-2 text-white/70">
-              <span className="text-blue-300">step_2</span>: AddSelectColumns <span className="text-white/30">// 选取用户字段</span>
+              <span className="text-blue-300">node_2</span>: AddSelectColumns <span className="text-white/30">// 选取用户字段</span>
             </div>
             <div className="ml-2 text-white/70">
-              <span className="text-cyan-300">step_3</span>: AddJoinNode <span className="text-white/30">// deps: [1,2]</span>
+              <span className="text-cyan-300">node_3</span>: AddJoinNode <span className="text-white/30">// deps: [1,2]</span>
             </div>
             <div className="ml-2 text-white/70">
-              <span className="text-amber-300">step_4</span>: AddSqlScript <span className="text-white/30">// deps: [3]</span>
+              <span className="text-amber-300">node_4</span>: AddSqlScript <span className="text-white/30">// deps: [3]</span>
             </div>
             <div className="text-white/30">{'] }'}</div>
           </div>
