@@ -114,7 +114,7 @@ export function Slide6() {
           <div className="bg-[#f8f6fb] rounded-xl p-4 border border-[#e5dfed]">
             <ul className="space-y-2.5 text-slate-600 text-[11px]">
               <li className="flex items-start gap-2"><span className="mt-1.5 w-1 h-1 rounded-full bg-[#C8242B]/70" /><span className="flex-1">已确认的业务目标与分析要求</span></li>
-              <li className="flex items-start gap-2"><span className="mt-1.5 w-1 h-1 rounded-full bg-[#C8242B]/70" /><span className="flex-1">候选数据域与当前可用资产</span></li>
+              <li className="flex items-start gap-2"><span className="mt-1.5 w-1 h-1 rounded-full bg-[#C8242B]/70" /><span className="flex-1">候选数据域与远端最新状态</span></li>
               <li className="flex items-start gap-2"><span className="mt-1.5 w-1 h-1 rounded-full bg-[#C8242B]/70" /><span className="flex-1">已有流程快照或当前运行状态</span></li>
               <li className="flex items-start gap-2"><span className="mt-1.5 w-1 h-1 rounded-full bg-[#C8242B]/70" /><span className="flex-1">本次输出结果的边界与约束</span></li>
             </ul>

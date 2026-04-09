@@ -5,15 +5,15 @@ import { BusinessSectionShell } from '@/app/components/business/BusinessSectionS
 const achievements = [
   { icon: Gauge, label: '需求响应', value: '更快' },
   { icon: Shield, label: '结果交付', value: '更稳' },
-  { icon: RefreshCw, label: '流程资产', value: '可复用' },
+  { icon: RefreshCw, label: '流程复用', value: '更顺畅' },
   { icon: TrendingUp, label: '平台能力', value: '可持续优化' }
 ];
 
 const businessValues = [
   { text: '降低使用门槛', detail: '业务用户可以直接从自然语言发起需求，减少跨团队转述成本。' },
-  { text: '减少重复建设', detail: '优先复用已有流程、历史版本和数据资产，不必每次从零开始。' },
+  { text: '减少重复建设', detail: '优先复用已有流程、历史版本和远端最新状态，不必每次从零开始。' },
   { text: '提高交付稳定性', detail: '在受控执行和自动校验下，减少因状态偏差和流程错误导致的返工。' },
-  { text: '沉淀平台能力', detail: '每次需求处理都会转化为可复用、可治理、可持续优化的平台资产。' }
+  { text: '沉淀平台能力', detail: '每次需求处理都会沉淀为可复用、可治理、可持续优化的流程能力。' }
 ];
 
 export function Slide10() {
@@ -65,7 +65,7 @@ export function Slide10() {
           </div>
 
           <div className="mt-4 rounded-xl border border-[#e5dfed] bg-[#f8f6fb] px-3 py-2 text-[10px] text-slate-600">
-            更快响应需求，更稳交付结果，并持续沉淀平台资产。
+            更快响应需求，更稳交付结果，并持续沉淀流程能力。
           </div>
         </motion.div>
 

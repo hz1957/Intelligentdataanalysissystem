@@ -47,7 +47,7 @@ export function Slide4() {
             </div>
             <div className="bg-[#f8f6fb] px-4 py-3 rounded-xl border border-[#e5dfed]">
               <div className="text-[#282562] text-[12px] font-bold mb-1">补齐关键上下文</div>
-              <div className="text-slate-500 text-[10px]">必要时追问或读取已有资产，避免因信息缺失导致执行偏差。</div>
+              <div className="text-slate-500 text-[10px]">必要时追问或读取远端最新状态，避免因信息缺失导致执行偏差。</div>
             </div>
           </div>
         </motion.div>
@@ -64,8 +64,8 @@ export function Slide4() {
                 <DownloadCloud className="w-5 h-5 text-[#282562]" />
               </div>
               <div>
-                <h3 className="text-[#282562] font-bold text-sm tracking-tight">上下文与资产对齐</h3>
-                <div className="text-[#C8242B]/75 text-[10px] font-medium">历史流程 / 当前状态 / 已有沉淀</div>
+                <h3 className="text-[#282562] font-bold text-sm tracking-tight">上下文与远端状态对齐</h3>
+                <div className="text-[#C8242B]/75 text-[10px] font-medium">历史流程 / 远端最新状态 / 当前上下文</div>
               </div>
             </div>
             <p className="text-slate-500 text-[11px] leading-relaxed mb-3">
@@ -75,7 +75,7 @@ export function Slide4() {
 
           <div className="grid grid-cols-2 gap-2 mt-auto">
             <div className="bg-[#f8f6fb] p-2.5 rounded-xl border border-[#e5dfed] text-[10px] text-slate-500">
-              <div className="text-[#282562] font-bold mb-1">复用已有资产</div>
+              <div className="text-[#282562] font-bold mb-1">读取已有流程</div>
               <div className="leading-snug">优先继承已有分析流程与历史结果。</div>
             </div>
             <div className="bg-[#f3eef4] p-2.5 rounded-xl border border-[#d9d4e6] text-[10px] text-slate-500">
