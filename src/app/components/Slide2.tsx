@@ -1,35 +1,35 @@
 import { motion } from 'motion/react';
-import { Box, Code2, Rocket, Clock, XCircle, CheckCircle } from 'lucide-react';
+import { Box, Code2, Rocket, Clock, CheckCircle } from 'lucide-react';
 
 const comparisons = [
   {
     icon: Box,
     title: '开源 RAG 框架 (Vanna.ai)',
     subtitle: '通用方案',
-    drawback: '复杂逻辑处理受限',
-    description: '提供了基础的 RAG 与 Text-to-SQL 框架。在面对垂直领域（如临床数据）的复杂关联查询时，通用检索逻辑较难覆盖特定业务规则。',
-    color: 'bg-white/5',
+    drawback: '偏重检索层，系统闭环能力有限',
+    description: '擅长知识接入、检索与 Text-to-SQL 起步搭建，但多数方案更偏 retrieval infrastructure，缺少 generator / validator / 评测 / 失败恢复等 harness engineering 支撑。',
+    color: 'bg-white/[0.02]',
     iconColor: 'bg-slate-700/50',
-    border: 'border-white/5',
+    border: 'border-white/[0.06]',
     status: 'limit'
   },
   {
     icon: Code2,
-    title: '通用大模型 (Claude Skills)',
+    title: '通用大模型 (Claude Code)',
     subtitle: '大模型推理',
-    drawback: '端到端响应时延较高',
-    description: '具备优秀的代码生成能力。作为通用推理引擎，单次任务的处理链路较长（~9min），在实时交互场景下存在一定的性能瓶颈。',
-    color: 'bg-white/5',
+    drawback: '通用性强，但时延与发散风险高',
+    description: '适合快速探索开放任务，但在复杂执行链路中若缺少流程约束与 validator，容易出现响应慢、成本高、多轮试探甚至兜圈子的情况。',
+    color: 'bg-white/[0.02]',
     iconColor: 'bg-indigo-500/30',
-    border: 'border-white/5',
+    border: 'border-white/[0.06]',
     status: 'limit'
   },
   {
     icon: Rocket,
     title: '垂直领域 Agent',
     subtitle: '自研方案',
-    advantage: '准确性与时效性的平衡',
-    description: '针对特定场景优化的 Agent 架构。引入预计算规划 (Planner) 预置领域知识，配合专用执行器 (Executor) 降低推理开销，提升系统稳定性。',
+    advantage: '更高的可控性、稳定性与性价比',
+    description: '针对特定场景优化 Agent 架构，便于结合 harness engineering、RAG 与领域约束做端到端闭环；虽然前期建设成本更高，但更适合生产环境持续优化。',
     color: 'bg-blue-500/10',
     iconColor: 'bg-blue-500/50',
     border: 'border-blue-500/30',
@@ -60,7 +60,7 @@ export function Slide2() {
             className="group h-full"
           >
             {/* Card */}
-            <div className={`relative h-full backdrop-blur-sm rounded-xl p-6 transition-all flex flex-col ${item.color} border ${item.border}`}>
+            <div className={`relative h-full rounded-[28px] p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:bg-white/[0.04] flex flex-col ${item.color} border ${item.border}`}>
               {/* Header */}
               <div className="flex items-center gap-4 mb-5">
                 <div className={`w-10 h-10 rounded-lg ${item.iconColor} flex items-center justify-center`}>
@@ -79,8 +79,8 @@ export function Slide2() {
 
               {/* Status/Verdict */}
               <div className={`mt-auto p-3 rounded-lg border flex items-center gap-2 ${item.status === 'solution'
-                  ? 'bg-blue-500/10 border-blue-500/20'
-                  : 'bg-white/5 border-white/5'
+                ? 'bg-blue-500/10 border-blue-500/20'
+                : 'bg-white/5 border-white/5'
                 }`}>
                 {item.status === 'solution' ? (
                   <CheckCircle className="w-4 h-4 text-blue-400" />

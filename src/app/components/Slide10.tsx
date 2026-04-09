@@ -1,20 +1,35 @@
 import { motion } from 'motion/react';
-import { Target, TrendingUp, Shield, Zap, Sparkles, CheckCircle, Brain, Database, Layers } from 'lucide-react';
+import { Layers, Server, Zap, Radio } from 'lucide-react';
 
-const achievements = [
-  { icon: Brain, label: '深度语义理解', value: '用户需求理解' },
-  { icon: Zap, label: '执行效能', value: '任务高效并发' },
-  { icon: Shield, label: '可靠性保障', value: '确定性执行' },
-  { icon: TrendingUp, label: '生成成功率', value: 'RL 强化调优' }
-];
-
-const keyFeatures = [
-  { text: '关注点分离', detail: '交互层 (Chatbot) 与 执行层 (ETL) 解耦' },
-  { text: '上下文工程', detail: 'Dynamic Few-Shot (RAG) + Schema Enrichment' },
-  { text: 'RL 强化训练', detail: '基于 Agent-Lightning + VERL 的定向优化' },
-  { text: '确定性执行', detail: 'Stateless Executor 确保 100% 可复现' },
-  { text: '自愈机制', detail: 'ReAct 循环 + 运行时沙箱校验' },
-  { text: '垂类 Agent', detail: '为临床数据场景定制的极致效能' }
+const techStack = [
+  {
+    category: '架构解耦',
+    icon: Layers,
+    tech: '双 Agent 分工',
+    color: 'from-blue-500 to-cyan-500',
+    description: 'Agent 1 负责规划，Agent 2 负责执行与回退'
+  },
+  {
+    category: '状态协同',
+    icon: Zap,
+    tech: '双端基线同步',
+    color: 'from-blue-600 to-cyan-600',
+    description: '远端 baseline 与 active path 一起约束当前上下文'
+  },
+  {
+    category: '执行保护',
+    icon: Radio,
+    tech: '节点级 Validator',
+    color: 'from-cyan-600 to-blue-500',
+    description: 'Join / SQL Script 先验证，再决定继续执行'
+  },
+  {
+    category: '持续优化',
+    icon: Server,
+    tech: 'RL 闭环调优',
+    color: 'from-cyan-500 to-blue-600',
+    description: '基于 Agent-Lightning 与 VERL 迭代高频错误节点'
+  }
 ];
 
 export function Slide10() {
@@ -24,83 +39,115 @@ export function Slide10() {
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6 }}
-        className="text-center mb-12"
+        className="text-center mb-8"
       >
-        <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-blue-500/10 mb-6 border border-blue-500/20">
-          <Sparkles className="w-8 h-8 text-blue-400" />
-        </div>
-
-        <h2 className="text-4xl font-bold text-white mb-2">平台总结</h2>
-        <p className="text-lg text-blue-200/60">Clinical Data Intelligence Platform</p>
+        <h2 className="text-5xl font-bold text-white mb-3">系统架构与工程总结</h2>
+        <p className="text-xl text-blue-200/80">从用户对话到 Plan 执行，并对应解决关键工程痛点</p>
       </motion.div>
 
-      {/* Stats */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.3 }}
-        className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10"
-      >
-        {achievements.map((item, index) => (
-          <motion.div
-            key={index}
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-            className="bg-white/5 backdrop-blur-sm rounded-xl p-5 border border-white/10 text-center hover:bg-white/10 transition-colors"
-          >
-            <div className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-blue-500/10 mb-3 text-blue-400">
-              <item.icon className="w-5 h-5" />
-            </div>
-            <div className="text-xl font-bold text-white mb-1">{item.value}</div>
-            <div className="text-slate-400 text-xs uppercase tracking-wider">{item.label}</div>
-          </motion.div>
-        ))}
-      </motion.div>
-
-      {/* Key Features */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.8 }}
-        className="relative mb-12"
-      >
-        <div className="absolute inset-0 bg-blue-500/5 rounded-2xl blur-xl opacity-50"></div>
-        <div className="relative bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
-          <h3 className="text-xl font-bold text-white mb-6 text-center">核心创新点</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
-            {keyFeatures.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ x: index % 2 === 0 ? -20 : 20, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.9 + index * 0.05 }}
-                className="flex items-start gap-3 p-3 rounded-lg hover:bg-white/5 transition-colors border border-transparent hover:border-white/5"
-              >
-                <CheckCircle className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
-                <div>
-                  <div className="text-white font-semibold text-base mb-1">{feature.text}</div>
-                  <div className="text-slate-400 text-sm">{feature.detail}</div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.div>
-
-      {/* Closing */}
       <motion.div
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, delay: 1.4 }}
-        className="text-center"
+        transition={{ duration: 0.6, delay: 0.2 }}
+        className="grid grid-cols-4 gap-3 mb-5"
       >
-        <p className="text-slate-400 text-sm mb-2">
-          让临床研究更智能、更高效、更可靠
-        </p>
-        <h3 className="text-2xl font-bold text-white tracking-tight">
-          Thank You
-        </h3>
+        {techStack.map((item, index) => (
+          <div key={index} className="relative group">
+            <div className={`absolute inset-0 bg-gradient-to-br ${item.color} rounded-[28px] blur-xl opacity-15`}></div>
+            <div className="relative bg-white/[0.02] rounded-[28px] p-6 border border-white/[0.06] h-full hover:-translate-y-1 hover:shadow-2xl hover:bg-white/[0.04] transition-all duration-300">
+              <div className="flex items-center gap-2 mb-2">
+                <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${item.color} flex items-center justify-center`}>
+                  <item.icon className="w-4 h-4 text-white" />
+                </div>
+                <span className="text-white/50 text-[10px] uppercase tracking-wider">{item.category}</span>
+              </div>
+              <h3 className="text-white font-bold text-sm mb-1">{item.tech}</h3>
+              <p className="text-white/40 text-[10px]">{item.description}</p>
+            </div>
+          </div>
+        ))}
+      </motion.div>
+
+      <motion.div
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.4 }}
+        className="bg-white/[0.02] rounded-[28px] p-7 border border-white/[0.06] hover:shadow-2xl hover:bg-white/[0.04] transition-all"
+      >
+        <h3 className="text-sm font-bold text-white mb-4 text-center">从用户对话到计划执行的交接流程</h3>
+
+        <div className="flex items-start gap-2">
+          <div className="w-[10%] flex flex-col items-center">
+            <div className="bg-blue-500/20 rounded-lg px-2 py-3 border border-blue-500/30 text-center w-full">
+              <div className="text-blue-300 text-[10px] font-bold">浏览器 / UI</div>
+              <div className="text-white/40 text-[9px]">用户界面</div>
+            </div>
+          </div>
+
+          <div className="flex flex-col items-center justify-center self-center">
+            <div className="text-[9px] text-white/30">WS</div>
+            <div className="text-white/20">→</div>
+          </div>
+
+          <div className="w-[40%]">
+            <div className="bg-cyan-500/10 rounded-lg p-3 border border-cyan-500/20">
+              <div className="text-cyan-300 text-[10px] font-bold mb-2 text-center">Agent 1 (对话规划)</div>
+              <div className="flex gap-1">
+                <div className="flex-1 bg-black/30 rounded p-1.5 text-center">
+                  <div className="text-[8px] text-white/50">Baseline Sync</div>
+                  <div className="text-[8px] text-cyan-300/70">远端防漂移基线</div>
+                </div>
+                <div className="text-white/15 self-center text-[8px]">→</div>
+                <div className="flex-1 bg-black/30 rounded p-1.5 text-center">
+                  <div className="text-[8px] text-white/50">Active Path</div>
+                  <div className="text-[8px] text-cyan-300/70">动态剪枝历史</div>
+                </div>
+                <div className="text-white/15 self-center text-[8px]">→</div>
+                <div className="flex-1 bg-black/30 rounded p-1.5 text-center">
+                  <div className="text-[8px] text-white/50">Plan Package</div>
+                  <div className="text-[8px] text-cyan-300/70">封装执行指令包</div>
+                </div>
+              </div>
+              <div className="mt-1.5 text-[8px] text-white/25 text-center">隔离自然语言，生成干净无状态的结构化 Handoff Payload</div>
+            </div>
+          </div>
+
+          <div className="flex flex-col items-center justify-center self-center">
+            <div className="text-center">
+              <div className="text-[7px] text-white/30 text-center">Async Plan Submit (202)</div>
+              <div className="text-white/20 text-xs">→</div>
+            </div>
+          </div>
+
+          <div className="w-[40%]">
+            <div className="bg-purple-500/10 rounded-lg p-3 border border-purple-500/20">
+              <div className="text-purple-300 text-[10px] font-bold mb-2 text-center">Agent 2 (计划执行)</div>
+              <div className="flex gap-1">
+                <div className="flex-1 bg-black/30 rounded p-1.5 text-center">
+                  <div className="text-[8px] text-white/50">Plan Consumer</div>
+                  <div className="text-[8px] text-purple-300/70">接收并加载计划</div>
+                </div>
+                <div className="text-white/15 self-center text-[8px]">→</div>
+                <div className="flex-1 bg-black/30 rounded p-1.5 text-center">
+                  <div className="text-[8px] text-white/50">ETL Engine</div>
+                  <div className="text-[8px] text-purple-300/70">修改与图谱重建</div>
+                </div>
+                <div className="text-white/15 self-center text-[8px]">→</div>
+                <div className="flex-1 bg-black/30 rounded p-1.5 text-center">
+                  <div className="text-[8px] text-white/50">Fail-Safe</div>
+                  <div className="text-[8px] text-purple-300/70">熔断验证与兜底</div>
+                </div>
+              </div>
+              <div className="mt-1.5 text-[8px] text-white/25 text-center">杜绝漫无边际的黑盒漫游，仅专注于安全落库和局部自修补</div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-4 rounded-2xl border border-white/[0.05] bg-black/20 px-4 py-3 text-center">
+          <span className="text-[10px] text-white/45">
+            最终把架构解耦、状态协同、节点级验证和 RL 优化串成一个闭环，让大模型能力从“能回答”变成“能稳定落地”。
+          </span>
+        </div>
       </motion.div>
     </div>
   );

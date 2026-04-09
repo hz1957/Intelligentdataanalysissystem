@@ -21,9 +21,9 @@ export function Slide1() {
         transition={{ duration: 0.6, delay: 0.4 }}
         className="mb-4"
       >
-        <span className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/20 backdrop-blur-sm border border-blue-400/30 rounded-full text-blue-300 text-sm font-medium mb-6">
+        <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/[0.03] border border-white/[0.08] rounded-full text-blue-300 text-sm font-medium mb-6">
           <Sparkles className="w-4 h-4" />
-          Intelligence Data Transformation
+          Agentic Data Orchestration Engine
         </span>
       </motion.div>
 
@@ -51,9 +51,9 @@ export function Slide1() {
         transition={{ duration: 0.6, delay: 0.7 }}
         className="text-xl text-purple-200/80 max-w-3xl mx-auto mb-12 leading-relaxed"
       >
-        通过多智能体 (Multi-Agent) 架构，链接自然语言的灵活性与
+        通过多智能体架构，链接自然语言的灵活性与
         <br />
-        临床数据工程 (CDISC/SDTM) 的严谨性
+        临床数据工程的严谨性
       </motion.p>
 
       <motion.div
@@ -62,11 +62,10 @@ export function Slide1() {
         transition={{ duration: 0.6, delay: 0.9 }}
         className="flex items-center justify-center gap-4 text-white/50 text-sm"
       >
-        <div className="w-20 h-px bg-white/20"></div>
-        <span className="uppercase tracking-widest">
-          Press Space or Arrow Keys
-        </span>
-        <div className="w-20 h-px bg-white/20"></div>
+        <div className="w-60 h-px bg-white/20"></div>
+        {/* <span className="uppercase tracking-widest">
+        </span> */}
+        {/* <div className="w-20 h-px bg-white/20"></div> */}
       </motion.div>
     </div>
   );

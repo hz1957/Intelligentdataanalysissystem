@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Cog, Map, Hammer, ArrowDown } from 'lucide-react';
+import { RefreshCw, Network, Server, Brain } from 'lucide-react';
 
 export function Slide6() {
   return (
@@ -11,146 +11,177 @@ export function Slide6() {
         className="text-center mb-8"
       >
         <div className="inline-flex items-center gap-3 mb-3">
-          <Cog className="w-10 h-10 text-blue-400" />
-          <h2 className="text-5xl font-bold text-white">Blueprint-Executor</h2>
+          <Network className="w-10 h-10 text-cyan-400" />
+          <h2 className="text-5xl font-bold text-white">Agent 2: 计划执行引擎</h2>
         </div>
-        <p className="text-xl text-blue-200/80">执行层 - 全局规划 + 局部执行</p>
+        <p className="text-xl text-blue-200/80">不和用户对话，只消费 Plan、上下文和约束</p>
       </motion.div>
 
-      {/* Two-phase layout */}
-      <motion.div
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        className="grid grid-cols-2 gap-4 mb-3"
-      >
-        {/* Phase 1: Global Planner */}
-        <div className="bg-white/5 backdrop-blur-lg rounded-xl p-4 border border-blue-500/20">
-          <div className="flex items-center gap-3 mb-3">
-            <div className="w-9 h-9 rounded-lg bg-blue-500/20 flex items-center justify-center">
-              <Map className="w-5 h-5 text-blue-300" />
-            </div>
-            <div>
-              <h4 className="text-white font-bold text-sm">Global Planner <span className="text-blue-300/60 font-normal">(Architect)</span></h4>
-              <div className="text-blue-200/50 text-[10px]">一次性规划完整 DAG 拓扑，不涉及 SQL 细节</div>
-            </div>
+      {/* Bento Grid Layout */}
+      <div className="grid grid-cols-12 md:grid-rows-2 gap-5 max-w-5xl mx-auto relative">
+
+        {/* Tall Block: execution steps */}
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="col-span-12 md:col-span-7 md:row-span-2 bg-white/[0.02] rounded-[28px] p-8 border border-white/[0.06] hover:-translate-y-1 hover:border-white/[0.12] hover:shadow-2xl hover:bg-white/[0.04] transition-all duration-300 relative group overflow-hidden flex flex-col"
+        >
+          <div className="flex items-center gap-3 mb-8">
+            <RefreshCw className="w-6 h-6 text-cyan-400" />
+            <h3 className="text-white font-bold text-lg tracking-tight">执行主流程</h3>
           </div>
 
-          {/* Blueprint JSON preview */}
-          <div className="bg-black/40 rounded-lg p-2.5 border border-white/5 text-[10px] font-mono leading-relaxed">
-            <div className="text-white/30">{'{'} "steps": {'['}</div>
-            <div className="ml-2 text-white/70">
-              <span className="text-blue-300">node_1</span>: AddSelectColumns <span className="text-white/30">// 选取订单字段</span>
-            </div>
-            <div className="ml-2 text-white/70">
-              <span className="text-blue-300">node_2</span>: AddSelectColumns <span className="text-white/30">// 选取用户字段</span>
-            </div>
-            <div className="ml-2 text-white/70">
-              <span className="text-cyan-300">node_3</span>: AddJoinNode <span className="text-white/30">// deps: [1,2]</span>
-            </div>
-            <div className="ml-2 text-white/70">
-              <span className="text-amber-300">node_4</span>: AddSqlScript <span className="text-white/30">// deps: [3]</span>
-            </div>
-            <div className="text-white/30">{'] }'}</div>
-          </div>
+          <div className="flex flex-col gap-4 relative">
+            <div className="absolute left-6 top-8 bottom-8 w-px bg-white/[0.05] z-0"></div>
 
-          <div className="mt-2 flex gap-2">
-            <span className="px-1.5 py-0.5 bg-blue-500/15 text-blue-300/80 text-[10px] rounded">仅 intent + tool + deps</span>
-            <span className="px-1.5 py-0.5 bg-blue-500/15 text-blue-300/80 text-[10px] rounded">Token 消耗低</span>
-          </div>
-        </div>
-
-        {/* Phase 2: Local Executor */}
-        <div className="bg-white/5 backdrop-blur-lg rounded-xl p-4 border border-amber-500/20">
-          <div className="flex items-center gap-3 mb-3">
-            <div className="w-9 h-9 rounded-lg bg-amber-500/20 flex items-center justify-center">
-              <Hammer className="w-5 h-5 text-amber-300" />
-            </div>
-            <div>
-              <h4 className="text-white font-bold text-sm">Local Executor <span className="text-amber-300/60 font-normal">(Mason)</span></h4>
-              <div className="text-amber-200/50 text-[10px]">遍历 Blueprint，逐步生成具体工具参数</div>
-            </div>
-          </div>
-
-          {/* Execution flow */}
-          <div className="bg-black/40 rounded-lg p-2.5 border border-white/5 text-[10px] font-mono space-y-1.5">
-            <div className="text-white/40">foreach step in blueprint:</div>
-            <div className="ml-2 space-y-1">
-              <div className="flex items-center gap-1.5">
-                <span className="text-cyan-300">1.</span>
-                <span className="text-white/70">resolve_deps → 上游 Schema</span>
+            {/* Node 1 */}
+            <div className="flex items-start gap-5 z-10 relative">
+              <div className="w-12 h-12 rounded-2xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center font-bold text-blue-400 text-sm flex-shrink-0">1</div>
+              <div className="pt-1">
+                <div className="font-bold text-white text-[13px] mb-1">接收 Plan 与候选数据集</div>
+                <div className="text-white/40 text-[11px] leading-relaxed">读取 Agent 1 交付的 refined instruction、relevant tables 和 baseline snapshot。</div>
               </div>
-              <div className="flex items-center gap-1.5">
-                <span className="text-cyan-300">2.</span>
-                <span className="text-white/70">local_context = intent + upstream_fields + downstream_intent</span>
+            </div>
+
+            {/* Node 2 */}
+            <div className="flex items-start gap-5 z-10 relative">
+              <div className="w-12 h-12 rounded-2xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center font-bold text-blue-400 text-sm flex-shrink-0">2</div>
+              <div className="pt-1">
+                <div className="font-bold text-white text-[13px] mb-1">判断新建还是修改</div>
+                <div className="text-white/40 text-[11px] leading-relaxed">根据是否存在 oldEtl 以及 modification intent，选择 create、modify 或 fallback 路径。</div>
               </div>
-              <div className="flex items-center gap-1.5">
-                <span className="text-cyan-300">3.</span>
-                <span className="text-white/70">LLM → 生成 SQL / 工具参数</span>
+            </div>
+
+            {/* Node 3 */}
+            <div className="flex items-start gap-5 z-10 relative">
+              <div className="w-12 h-12 rounded-2xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center font-bold text-blue-400 text-sm flex-shrink-0">3</div>
+              <div className="pt-1">
+                <div className="font-bold text-white text-[13px] mb-1">进入 Agentic Loop</div>
+                <div className="text-white/40 text-[11px] leading-relaxed">通过 Tool Call 修改 DAG，并把新状态持续回写给下一轮执行。</div>
+              </div>
+            </div>
+
+            {/* Node 4 */}
+            <div className="flex items-start gap-5 z-10 relative">
+              <div className="w-12 h-12 rounded-2xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center font-bold text-blue-400 text-sm flex-shrink-0">4</div>
+              <div className="pt-1">
+                <div className="font-bold text-white text-[13px] mb-1">校验并补充元数据</div>
+                <div className="text-white/40 text-[11px] leading-relaxed">同步字段、标签、说明等业务元数据，并检查结构、依赖关系和 schema 是否合法。</div>
+              </div>
+            </div>
+
+            {/* Node 5 */}
+            <div className="flex items-start gap-5 z-10 relative">
+              <div className="w-12 h-12 rounded-2xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center font-bold text-blue-400 text-sm flex-shrink-0">5</div>
+              <div className="pt-1">
+                <div className="font-bold text-white text-[13px] mb-1">输出标准化结果</div>
+                <div className="text-white/40 text-[11px] leading-relaxed">生成可落库、可回放的 JSON / Schema，供 saveEtl 和下游模块直接消费。</div>
               </div>
             </div>
           </div>
 
-          <div className="mt-2 flex gap-2">
-            <span className="px-1.5 py-0.5 bg-amber-500/15 text-amber-300/80 text-[10px] rounded">上下文纯净</span>
-            <span className="px-1.5 py-0.5 bg-amber-500/15 text-amber-300/80 text-[10px] rounded">单步可重试</span>
-            <span className="px-1.5 py-0.5 bg-amber-500/15 text-amber-300/80 text-[10px] rounded">感知下游需求</span>
+          <div className="mt-6 border-t border-white/[0.06] pt-4">
+            <div className="rounded-2xl border border-white/[0.05] bg-black/25 p-3 overflow-hidden">
+              <svg
+                className="w-full h-[118px]"
+                viewBox="0 0 560 150"
+                preserveAspectRatio="xMidYMid meet"
+                aria-label="sample dag"
+              >
+                <g fill="none" strokeLinecap="round">
+                  <line x1="92" y1="42" x2="165" y2="42" stroke="rgba(251,191,36,0.72)" strokeWidth="1.2" />
+                  <line x1="92" y1="108" x2="165" y2="108" stroke="rgba(255,255,255,0.22)" strokeWidth="1.2" />
+                  <line x1="245" y1="42" x2="305" y2="75" stroke="rgba(255,255,255,0.22)" strokeWidth="1.2" />
+                  <line x1="245" y1="108" x2="305" y2="75" stroke="rgba(255,255,255,0.22)" strokeWidth="1.2" />
+                  <line x1="367" y1="75" x2="425" y2="75" stroke="rgba(255,255,255,0.22)" strokeWidth="1.2" />
+                  <line x1="483" y1="75" x2="512" y2="75" stroke="rgba(255,255,255,0.22)" strokeWidth="1.2" />
+                </g>
+
+                <g fontFamily="ui-sans-serif, system-ui, sans-serif" textAnchor="middle">
+                  <rect x="20" y="24" width="72" height="36" rx="12" fill="rgba(251,191,36,0.12)" stroke="rgba(251,191,36,0.24)" />
+                  <text x="56" y="39" fill="rgba(254,240,138,0.96)" fontSize="12" fontWeight="700">AE 表</text>
+                  <text x="56" y="51" fill="rgba(254,240,138,0.62)" fontSize="10">不良反应</text>
+
+                  <rect x="20" y="90" width="72" height="36" rx="12" fill="rgba(251,191,36,0.12)" stroke="rgba(251,191,36,0.24)" />
+                  <text x="56" y="105" fill="rgba(254,240,138,0.96)" fontSize="12" fontWeight="700">MH 表</text>
+                  <text x="56" y="117" fill="rgba(254,240,138,0.62)" fontSize="10">病史</text>
+
+                  <rect x="165" y="24" width="80" height="36" rx="12" fill="rgba(251,191,36,0.10)" stroke="rgba(251,191,36,0.24)" />
+                  <text x="205" y="45" fill="rgba(254,240,138,0.92)" fontSize="11" fontWeight="700">选择列</text>
+
+                  <rect x="165" y="90" width="80" height="36" rx="12" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.10)" />
+                  <text x="205" y="111" fill="rgba(255,255,255,0.72)" fontSize="11" fontWeight="700">选择列</text>
+
+                  <rect x="305" y="57" width="62" height="36" rx="12" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.10)" />
+                  <text x="336" y="78" fill="rgba(255,255,255,0.72)" fontSize="11" fontWeight="700">关联</text>
+
+                  <rect x="425" y="57" width="58" height="36" rx="12" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.10)" />
+                  <text x="454" y="72" fill="rgba(255,255,255,0.72)" fontSize="11" fontWeight="700">SQL</text>
+                  <text x="454" y="84" fill="rgba(255,255,255,0.46)" fontSize="9">相关计算</text>
+
+                  <rect x="512" y="57" width="48" height="36" rx="12" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.10)" />
+                  <text x="536" y="78" fill="rgba(255,255,255,0.72)" fontSize="11" fontWeight="700">输出</text>
+                </g>
+              </svg>
+            </div>
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
 
-      {/* Key Features */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.3, delay: 0.35 }}
-        className="flex items-center justify-center gap-6 my-3 py-2"
-      >
-        <div className="flex items-center gap-2 text-[11px]">
-          <span className="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
-          <span className="text-white/60">全局规划 (Map-First)</span>
-        </div>
-        <div className="flex items-center gap-2 text-[11px]">
-          <span className="w-1.5 h-1.5 rounded-full bg-green-400"></span>
-          <span className="text-white/60">恒定且短的上下文 (仅局部依赖)</span>
-        </div>
-        <div className="flex items-center gap-2 text-[11px]">
-          <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
-          <span className="text-white/60">单步重试 / 修正 Blueprint</span>
-        </div>
-      </motion.div>
+        {/* Short Block 1: Payload */}
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="col-span-12 md:col-span-5 md:row-span-1 bg-white/[0.02] rounded-[28px] p-7 border border-white/[0.06] hover:-translate-y-1 hover:border-white/[0.12] hover:shadow-2xl hover:bg-white/[0.04] transition-all duration-300 relative group overflow-hidden"
+        >
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-center">
+              <Server className="w-5 h-5 text-blue-400" />
+            </div>
+            <h3 className="font-bold text-white text-md tracking-tight">入口交接负载 (Payload)</h3>
+          </div>
+          <div className="bg-black/30 rounded-xl p-4 border border-white/[0.03]">
+            <ul className="space-y-3 text-white/50 text-[11px] font-medium">
+              <li className="flex items-start gap-2"><span className="mt-1.5 w-1 h-1 rounded-full bg-blue-400/50"></span><span className="flex-1">结构化 Plan: refined instruction 与操作约束</span></li>
+              <li className="flex items-start gap-2"><span className="mt-1.5 w-1 h-1 rounded-full bg-blue-400/50"></span><span className="flex-1">候选数据域: 允许访问的数据表 / 字段范围</span></li>
+              <li className="flex items-start gap-2"><span className="mt-1.5 w-1 h-1 rounded-full bg-blue-400/50"></span><span className="flex-1">当前快照: oldEtl、baseline 与历史 state</span></li>
+              <li className="flex items-start gap-2"><span className="mt-1.5 w-1 h-1 rounded-full bg-blue-400/50"></span><span className="flex-1">执行模式: create / modify / fallback 标记</span></li>
+            </ul>
+          </div>
+        </motion.div>
 
-      {/* Executor Log */}
-      <motion.div
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.45 }}
-        className="relative"
-      >
-        <div className="flex items-center gap-2 mb-2">
-          <span className="text-white/30 text-[10px] font-mono">▸ Executor 并发运行日志 (多会话)</span>
-        </div>
-        <div className="bg-black/50 rounded-xl border border-white/10 p-3 max-h-[155px] overflow-hidden font-mono text-[9px] leading-[1.4] space-y-[1px]">
-          <div className="text-white/30">07:37:53 <span className="text-cyan-400/70">[Generator]</span> No oldEtl. Engaging ChatSchemaPlanner (Create Mode).</div>
-          <div className="text-white/30">07:37:54 <span className="text-blue-400/80">[771A73]</span> <span className="text-white/50">[Executor]</span> Executed AddSelectColumnsNode → node_13130</div>
-          <div className="text-white/30">07:37:54 <span className="text-blue-400/80">[771A73]</span> <span className="text-white/50">[Executor]</span> Iteration 6: 1 tools (16.81s)</div>
-          <div className="text-white/30">07:37:59 <span className="text-amber-400/70">[7A9130]</span> <span className="text-white/50">[Rewrite]</span> Selected 3 of 55 tables. Done.</div>
-          <div className="text-white/30">07:38:04 <span className="text-blue-400/80">[771A73]</span> <span className="text-white/50">[Executor]</span> Executed AddSelectColumnsNode → node_13131</div>
-          <div className="text-white/30">07:38:04 <span className="text-blue-400/80">[771A73]</span> <span className="text-white/50">[Executor]</span> Iteration 7: 1 tools (10.68s)</div>
-          <div className="text-white/30">07:38:11 <span className="text-cyan-400/70">[Generator]</span> No oldEtl. Engaging ChatSchemaPlanner (Create Mode).</div>
-          <div className="text-white/30">07:38:13 <span className="text-green-400/80">[B630F7]</span> <span className="text-white/50">[Executor]</span> Executed AddSelectColumnsNode → node_13253</div>
-          <div className="text-white/30">07:38:13 <span className="text-green-400/80">[B630F7]</span> <span className="text-white/50">[Executor]</span> Iteration 1: 1 tools (19.27s)</div>
-          <div className="text-white/30">07:38:14 <span className="text-purple-400/80">[E4AF3A]</span> <span className="text-white/50">[Executor]</span> Executed AddSelectColumnsNode → node_13254</div>
-          <div className="text-white/30">07:38:14 <span className="text-purple-400/80">[E4AF3A]</span> <span className="text-white/50">[Executor]</span> Iteration 1: 1 tools (23.31s)</div>
-          <div className="text-white/30">07:38:15 <span className="text-blue-400/80">[771A73]</span> <span className="text-white/50">[Executor]</span> Executed AddSelectColumnsNode → node_13255</div>
-          <div className="text-white/30">07:38:15 <span className="text-blue-400/80">[771A73]</span> <span className="text-white/50">[Executor]</span> Iteration 8: 1 tools (11.08s)</div>
-          <div className="text-white/30">07:38:25 <span className="text-red-400/80">[1AD180]</span> <span className="text-white/50">[Executor]</span> Executed AddSelectColumnsNode → node_13256</div>
-          <div className="text-white/30">07:38:25 <span className="text-red-400/80">[1AD180]</span> <span className="text-white/50">[Executor]</span> Iteration 9: 1 tools (43.61s)</div>
-          <div className="text-white/30">07:38:31 <span className="text-amber-400/70">[7A9130]</span> <span className="text-white/50">[Executor]</span> Executed AddSelectColumnsNode → node_13257</div>
-          <div className="text-white/30">07:38:31 <span className="text-amber-400/70">[7A9130]</span> <span className="text-white/50">[Executor]</span> Iteration 1: 1 tools (19.55s)</div>
-          <div className="text-white/30">07:38:31 <span className="text-blue-400/80">[771A73]</span> <span className="text-white/50">[Executor]</span> Executed AddSelectColumnsNode → node_13258</div>
-        </div>
-      </motion.div>
+        {/* Short Block 2: Logic Info */}
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="col-span-12 md:col-span-5 md:row-span-1 bg-white/[0.02] rounded-[28px] p-7 border border-white/[0.06] hover:-translate-y-1 hover:border-white/[0.12] hover:shadow-2xl hover:bg-white/[0.04] transition-all duration-300 relative group overflow-hidden flex flex-col justify-center"
+        >
+          <div className="flex items-center gap-2 mb-4">
+            <Brain className="w-5 h-5 text-cyan-400/70 group-hover:text-cyan-400 transition-colors" />
+            <h3 className="font-bold text-white text-md tracking-tight">Agentic Loop</h3>
+          </div>
+
+          <div className="bg-black/30 rounded-xl p-4 border border-cyan-500/15 mb-4">
+            <div className="flex items-center justify-between gap-2 text-[11px] font-medium text-white/65">
+              <span className="rounded-lg border border-white/[0.05] bg-white/[0.03] px-2 py-1">Tool Call</span>
+              <span className="text-white/25">→</span>
+              <span className="rounded-lg border border-white/[0.05] bg-white/[0.03] px-2 py-1">修改 DAG</span>
+              <span className="text-white/25">→</span>
+              <span className="rounded-lg border border-white/[0.05] bg-white/[0.03] px-2 py-1">回写状态</span>
+              <span className="text-white/25">→</span>
+              <span className="rounded-lg border border-cyan-500/20 bg-cyan-500/10 px-2 py-1 text-cyan-300">继续执行</span>
+            </div>
+          </div>
+
+          <div className="text-[11px] text-white/55 leading-relaxed font-medium">
+            Agent 2 的核心不是重新理解用户需求，而是围绕当前状态持续执行这条 loop。<br /><br />
+            <span className="text-cyan-300">若局部修改无法稳定收敛，则自动 fallback 到 full rebuild。</span>
+          </div>
+        </motion.div>
+
+      </div>
     </div>
   );
 }

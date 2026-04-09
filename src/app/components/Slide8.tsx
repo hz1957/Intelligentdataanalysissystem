@@ -12,9 +12,9 @@ export function Slide8() {
       >
         <div className="inline-flex items-center gap-3 mb-3">
           <Zap className="w-10 h-10 text-blue-400" />
-          <h2 className="text-4xl font-bold text-white">SQL工具优化 II</h2>
+          <h2 className="text-5xl font-bold text-white">Agent 2: 计划执行引擎</h2>
         </div>
-        <p className="text-xl text-blue-200/80">强化学习: Agent-Lightning + VERL</p>
+        <p className="text-xl text-blue-200/80">SQL工具优化 II：强化学习 (Agent-Lightning + VERL)</p>
       </motion.div>
 
       {/* SQL Agent Workflow */}
@@ -22,7 +22,7 @@ export function Slide8() {
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className="bg-white/5 backdrop-blur-lg rounded-2xl p-5 border border-white/10 mb-4"
+        className="bg-white/[0.02] rounded-[28px] p-6 border border-white/[0.06] mb-4 hover:shadow-2xl hover:bg-white/[0.04] transition-all"
       >
         <div className="flex items-center gap-2 mb-4">
           <Brain className="w-4 h-4 text-cyan-400" />
@@ -32,11 +32,11 @@ export function Slide8() {
 
         <div className="flex items-center gap-2">
           {/* write_query */}
-          <div className="flex-1 bg-blue-500/10 rounded-lg p-3 border border-blue-500/30 text-center">
-            <div className="text-blue-300 text-xs font-bold mb-1">write_query</div>
+          <div className="flex-1 bg-white/[0.03] rounded-lg p-3 border border-white/[0.08] text-center">
+            <div className="text-white/80 text-xs font-bold mb-1">write_query</div>
             <div className="text-white/40 text-[10px]">根据问题 + Schema</div>
             <div className="text-white/40 text-[10px]">生成初始 SQL</div>
-            <div className="mt-1 px-1.5 py-0.5 bg-amber-500/20 text-amber-300 text-[9px] rounded inline-block font-mono">RL ⚡</div>
+            <div className="mt-1 px-1.5 py-0.5 bg-white/[0.05] text-white/50 text-[9px] rounded inline-block font-mono border border-white/[0.1]">RL ⚡</div>
           </div>
 
           <ArrowRight className="w-3 h-3 text-white/20 flex-shrink-0" />
@@ -64,11 +64,11 @@ export function Slide8() {
           </div>
 
           {/* rewrite_query */}
-          <div className="flex-1 bg-cyan-500/10 rounded-lg p-3 border border-cyan-500/30 text-center">
-            <div className="text-cyan-300 text-xs font-bold mb-1">rewrite_query</div>
+          <div className="flex-1 bg-white/[0.03] rounded-lg p-3 border border-white/[0.08] text-center">
+            <div className="text-white/80 text-xs font-bold mb-1">rewrite_query</div>
             <div className="text-white/40 text-[10px]">根据反馈重写</div>
             <div className="text-white/40 text-[10px]">→ 重新执行</div>
-            <div className="mt-1 px-1.5 py-0.5 bg-amber-500/20 text-amber-300 text-[9px] rounded inline-block font-mono">RL ⚡</div>
+            <div className="mt-1 px-1.5 py-0.5 bg-white/[0.05] text-white/50 text-[9px] rounded inline-block font-mono border border-white/[0.1]">RL ⚡</div>
           </div>
         </div>
       </motion.div>
@@ -81,10 +81,10 @@ export function Slide8() {
         className="grid grid-cols-3 gap-3 mb-4"
       >
         {/* LitSQLAgent Bridge */}
-        <div className="bg-white/5 backdrop-blur-lg rounded-xl p-4 border border-white/10">
+        <div className="bg-white/[0.02] rounded-[28px] p-5 border border-white/[0.06] hover:shadow-2xl hover:bg-white/[0.04] transition-all flex flex-col">
           <div className="flex items-center gap-2 mb-2">
             <div className="w-7 h-7 rounded-lg bg-blue-500/20 flex items-center justify-center">
-              <Settings className="w-4 h-4 text-blue-300" />
+              <Settings className="w-4 h-4 text-blue-400" />
             </div>
             <span className="text-white font-bold text-xs">LitSQLAgent</span>
           </div>
@@ -98,10 +98,10 @@ export function Slide8() {
         </div>
 
         {/* Reward Signal */}
-        <div className="bg-white/5 backdrop-blur-lg rounded-xl p-4 border border-white/10">
+        <div className="bg-white/[0.02] rounded-[28px] p-5 border border-white/[0.06] hover:shadow-2xl hover:bg-white/[0.04] transition-all flex flex-col">
           <div className="flex items-center gap-2 mb-2">
-            <div className="w-7 h-7 rounded-lg bg-green-500/20 flex items-center justify-center">
-              <Database className="w-4 h-4 text-green-300" />
+            <div className="w-7 h-7 rounded-lg bg-white/[0.05] flex items-center justify-center">
+              <Database className="w-4 h-4 text-blue-400" />
             </div>
             <span className="text-white font-bold text-xs">Reward 信号</span>
           </div>
@@ -121,10 +121,10 @@ export function Slide8() {
         </div>
 
         {/* VERL Config */}
-        <div className="bg-white/5 backdrop-blur-lg rounded-xl p-4 border border-white/10">
+        <div className="bg-white/[0.02] rounded-[28px] p-5 border border-white/[0.06] hover:shadow-2xl hover:bg-white/[0.04] transition-all flex flex-col">
           <div className="flex items-center gap-2 mb-2">
-            <div className="w-7 h-7 rounded-lg bg-amber-500/20 flex items-center justify-center">
-              <Play className="w-4 h-4 text-amber-300" />
+            <div className="w-7 h-7 rounded-lg bg-white/[0.05] flex items-center justify-center">
+              <Play className="w-4 h-4 text-blue-400" />
             </div>
             <span className="text-white font-bold text-xs">VERL 配置</span>
           </div>
@@ -155,7 +155,7 @@ export function Slide8() {
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.5 }}
-        className="bg-white/5 backdrop-blur-lg rounded-xl p-4 border border-white/10"
+        className="bg-white/[0.02] rounded-[28px] p-6 border border-white/[0.06] hover:-translate-y-1 hover:shadow-2xl hover:bg-white/[0.04] transition-all"
       >
         <div className="flex items-center gap-2 mb-3">
           <Play className="w-4 h-4 text-cyan-400" />

@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { MessageSquare, BookOpen, Search, ArrowDown, Brain, FileText } from 'lucide-react';
+import { MessageSquare, Brain, Box, Globe, DownloadCloud } from 'lucide-react';
 
 export function Slide4() {
   return (
@@ -12,158 +12,138 @@ export function Slide4() {
       >
         <div className="inline-flex items-center gap-3 mb-3">
           <MessageSquare className="w-10 h-10 text-blue-400" />
-          <h2 className="text-5xl font-bold text-white">Chatbot Agent</h2>
+          <h2 className="text-5xl font-bold text-white">Agent 1: 对话规划入口</h2>
         </div>
-        <p className="text-xl text-blue-200/80">意图层 - 双通道检索 + 两阶段 LLM</p>
+        <p className="text-xl text-blue-200/80">直接和用户对话，管理上下文，并生成可执行 Plan</p>
       </motion.div>
 
-      {/* Stage 1: Dual-Channel Retrieval */}
-      <motion.div
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        className="relative mb-4"
-      >
-        <div className="absolute top-0 left-6 text-white/20 text-xs font-mono">STAGE 1</div>
-        <div className="grid grid-cols-2 gap-4 mt-4">
-          {/* Rule Matching */}
-          <div className="bg-white/5 backdrop-blur-lg rounded-xl p-5 border border-blue-500/20">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center">
-                <BookOpen className="w-5 h-5 text-blue-300" />
-              </div>
-              <div>
-                <h4 className="text-white font-bold">规则匹配</h4>
-                <div className="text-blue-200/50 text-xs">领域术语精确命中</div>
-              </div>
+      {/* Bento Grid layout */}
+      <div className="grid grid-cols-12 gap-5 max-w-5xl mx-auto relative">
+
+        {/* Tall Block: Intent Classification */}
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="col-span-12 md:col-span-6 md:row-span-2 bg-white/[0.02] rounded-[28px] p-7 border border-white/[0.06] hover:-translate-y-1 hover:border-white/[0.12] hover:shadow-2xl hover:bg-white/[0.04] transition-all duration-300 relative group overflow-hidden flex flex-col"
+        >
+          <div className="flex items-center gap-4 mb-6">
+            <div className="w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center border border-blue-500/20 group-hover:bg-blue-500/20 transition-colors">
+              <Brain className="w-6 h-6 text-blue-400" />
             </div>
-            <div className="bg-black/30 rounded-lg p-3 border border-white/5 text-xs font-mono">
-              <div className="text-white/50 mb-1"># 用户输入</div>
-              <div className="text-white/90 mb-2">"查看<span className="text-blue-300">不良事件</span>数据"</div>
-              <div className="text-white/30 mb-1">↓ 关键词匹配</div>
-              <div className="flex flex-wrap gap-1">
-                <span className="px-1.5 py-0.5 bg-blue-500/20 text-blue-300 rounded">不良反应</span>
-                <span className="px-1.5 py-0.5 bg-blue-500/20 text-blue-300 rounded">AE</span>
-                <span className="px-1.5 py-0.5 bg-blue-500/20 text-blue-300 rounded">Adverse Event</span>
-              </div>
+            <div>
+              <h3 className="text-white font-bold text-lg tracking-tight">5-Way 意图路由</h3>
+              <div className="text-blue-200/50 text-[11px] font-medium">对话分类 -&gt; 规划动作</div>
             </div>
           </div>
 
-          {/* Similarity Matching */}
-          <div className="bg-white/5 backdrop-blur-lg rounded-xl p-5 border border-cyan-500/20">
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-10 h-10 rounded-lg bg-cyan-500/20 flex items-center justify-center">
-                <Search className="w-5 h-5 text-cyan-300" />
-              </div>
-              <div>
-                <h4 className="text-white font-bold">相似度匹配</h4>
-                <div className="text-cyan-200/50 text-xs">语义向量 Top-K 检索</div>
-              </div>
+          <div className="flex flex-col gap-2.5 flex-1 justify-center">
+            <div className="bg-black/30 px-3 py-2.5 rounded-xl border border-white/[0.03] flex justify-between items-center transition-colors group-hover:border-white/[0.06]">
+              <span className="text-white/80 text-[11px] font-bold">CHITCHAT</span>
+              <span className="text-white/40 text-[10px]">直接回复，不触发执行</span>
             </div>
-            <div className="bg-black/30 rounded-lg p-3 border border-white/5 text-xs font-mono">
-              <div className="text-white/50 mb-1"># Embedding 检索</div>
-              <div className="text-white/90 mb-2">{'query → vector → cosine similarity'}</div>
-              <div className="text-white/30 mb-1">↓ Top-15 Schema</div>
-              <div className="flex flex-wrap gap-1">
-                <span className="px-1.5 py-0.5 bg-cyan-500/20 text-cyan-300 rounded">DM</span>
-                <span className="px-1.5 py-0.5 bg-cyan-500/20 text-cyan-300 rounded">AE</span>
-                <span className="px-1.5 py-0.5 bg-cyan-500/20 text-cyan-300 rounded">CM</span>
-                <span className="px-1.5 py-0.5 bg-white/10 text-white/40 rounded">+12</span>
-              </div>
+            <div className="bg-black/30 px-3 py-2.5 rounded-xl border border-white/[0.03] flex justify-between items-center transition-colors group-hover:border-white/[0.06]">
+              <span className="text-white/80 text-[11px] font-bold">DATA_EXPERT</span>
+              <span className="text-white/40 text-[10px]">解释表结构与领域知识</span>
+            </div>
+            <div className="bg-black/30 px-3 py-2.5 rounded-xl border border-white/[0.03] flex justify-between items-center transition-colors group-hover:border-white/[0.06]">
+              <span className="text-white/80 text-[11px] font-bold">PLAN_RECALL</span>
+              <span className="text-white/40 text-[10px]">从历史恢复当前可执行状态</span>
+            </div>
+            <div className="bg-white/[0.03] px-3 py-2.5 rounded-xl border border-white/[0.05] flex justify-between items-center relative overflow-hidden transition-colors group-hover:border-white/[0.1]">
+              <div className="absolute left-0 top-0 bottom-0 w-1 bg-blue-500/50"></div>
+              <span className="text-white/80 font-bold text-[11px] pl-2">REFINEMENT</span>
+              <span className="text-white/40 text-[10px]">在现有 Plan 上增量修改</span>
+            </div>
+            <div className="bg-white/[0.03] px-3 py-2.5 rounded-xl border border-white/[0.05] flex justify-between items-center relative overflow-hidden transition-colors group-hover:border-white/[0.1]">
+              <div className="absolute left-0 top-0 bottom-0 w-1 bg-blue-500/50"></div>
+              <span className="text-white/80 font-bold text-[11px] pl-2">NEW_REQUEST</span>
+              <span className="text-white/40 text-[10px]">为新需求生成新 Plan</span>
             </div>
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
 
-      {/* Arrow Down - Union */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.3, delay: 0.4 }}
-        className="flex justify-center my-2"
-      >
-        <div className="flex items-center gap-2 text-white/30">
-          <div className="h-px w-16 bg-white/10"></div>
-          <span className="text-xs font-mono px-2 py-0.5 bg-white/5 rounded border border-white/10">UNION</span>
-          <ArrowDown className="w-4 h-4" />
-          <div className="h-px w-16 bg-white/10"></div>
-        </div>
-      </motion.div>
+        {/* Short Block 1: Baseline & Sync */}
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="col-span-12 md:col-span-6 md:row-span-1 bg-white/[0.02] rounded-[28px] p-7 border border-white/[0.06] hover:-translate-y-1 hover:border-white/[0.12] hover:shadow-2xl hover:bg-white/[0.04] transition-all duration-300 relative group overflow-hidden flex flex-col justify-between"
+        >
+          <div>
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-10 h-10 rounded-xl bg-white/[0.03] flex items-center justify-center border border-white/[0.08] group-hover:bg-white/[0.05] transition-colors">
+                <DownloadCloud className="w-5 h-5 text-blue-400" />
+              </div>
+              <div>
+                <h3 className="text-white font-bold text-sm tracking-tight">远端状态同步与防漂移</h3>
+                <div className="text-cyan-200/50 text-[10px] font-medium">Baseline Sync & Drift Check</div>
+              </div>
+            </div>
+            <p className="text-white/50 text-[11px] leading-relaxed mb-4 font-medium">
+              规划前若无 baseline，主动从线上拉取作为起点；在生成修改计划或移交 Agent 2 执行前，会再次抓取线上状态进行防漂移校验。
+            </p>
+          </div>
 
-      {/* Stage 2: Router LLM */}
-      <motion.div
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.5 }}
-        className="relative mb-4"
-      >
-        <div className="absolute top-0 left-6 text-white/20 text-xs font-mono">STAGE 2</div>
-        <div className="bg-white/5 backdrop-blur-lg rounded-xl p-5 border border-purple-500/20 mt-4">
-          <div className="flex items-center justify-between">
+          <div className="grid grid-cols-2 gap-2 mt-auto">
+            <div className="bg-black/50 p-2.5 rounded-xl border border-white/[0.04] text-[10px] text-cyan-200/70 shadow-inner flex flex-col justify-center">
+              <div className="text-white/80 font-bold mb-1 -mt-1 text-[10px]">1. 面包屑加载</div>
+              <div className="text-white/40 leading-snug">首次聊天无本地锚点时，透明拉取线上配置。</div>
+            </div>
+            <div className="bg-cyan-500/10 p-2.5 rounded-xl border border-cyan-500/20 text-[10px] text-cyan-300/70 shadow-inner flex flex-col justify-center relative">
+              <div className="text-cyan-300/90 font-bold mb-1 -mt-1 text-[10px]">2. 执行前最终对齐</div>
+              <div className="text-white/40 leading-snug">执行前若发现线上配置已变更，则强制以线上最新状态为准更新本地。</div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Short Block 2: Preparation */}
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="col-span-12 md:col-span-6 md:row-span-1 bg-white/[0.02] rounded-[28px] p-7 border border-white/[0.06] hover:-translate-y-1 hover:border-white/[0.12] hover:shadow-2xl hover:bg-white/[0.04] transition-all duration-300 relative group overflow-hidden"
+        >
+          <div className="flex items-center gap-4 mb-4">
+            <div className="w-10 h-10 rounded-xl bg-white/[0.03] flex items-center justify-center border border-white/[0.08] group-hover:bg-white/[0.05] transition-colors">
+              <Box className="w-5 h-5 text-blue-400" />
+            </div>
+            <div>
+              <h3 className="text-white font-bold text-sm tracking-tight">Plan 装配</h3>
+              <div className="text-purple-200/50 text-[10px] font-medium">Plan Packaging</div>
+            </div>
+          </div>
+          <div className="text-white/50 text-xs space-y-3 leading-relaxed font-medium mt-1">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center">
-                <Brain className="w-5 h-5 text-purple-300" />
-              </div>
-              <div>
-                <h4 className="text-white font-bold">Router LLM</h4>
-                <div className="text-purple-200/50 text-xs">从候选集中精选相关表</div>
-              </div>
+              <div className="w-1.5 h-1.5 bg-blue-400/50 rounded-full"></div>
+              <div>筛选候选数据表，缩小 Agent 2 的执行范围</div>
             </div>
             <div className="flex items-center gap-3">
-              <div className="text-right">
-                <div className="text-purple-300 text-xs font-mono font-bold">{'< 100 tokens'}</div>
-              </div>
-              <div className="px-3 py-1.5 bg-purple-500/10 border border-purple-500/30 rounded-lg">
-                <div className="text-white/40 text-[10px] mb-0.5">Output</div>
-                <div className="flex gap-1">
-                  <span className="px-1.5 py-0.5 bg-purple-500/20 text-purple-300 text-xs rounded font-mono">AE</span>
-                  <span className="px-1.5 py-0.5 bg-purple-500/20 text-purple-300 text-xs rounded font-mono">DM</span>
-                </div>
-              </div>
+              <div className="w-1.5 h-1.5 bg-blue-400/50 rounded-full"></div>
+              <div>补充远端摘要与历史上下文</div>
             </div>
-          </div>
-        </div>
-      </motion.div>
-
-      {/* Arrow Down */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.3, delay: 0.6 }}
-        className="flex justify-center my-2"
-      >
-        <ArrowDown className="w-4 h-4 text-white/20" />
-      </motion.div>
-
-      {/* Stage 3: Generator LLM */}
-      <motion.div
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.7 }}
-        className="relative"
-      >
-        <div className="absolute top-0 left-6 text-white/20 text-xs font-mono">STAGE 3</div>
-        <div className="bg-white/5 backdrop-blur-lg rounded-xl p-5 border border-amber-500/20 mt-4">
-          <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-amber-500/20 flex items-center justify-center">
-                <FileText className="w-5 h-5 text-amber-300" />
-              </div>
-              <div>
-                <h4 className="text-white font-bold">Generator LLM</h4>
-                <div className="text-amber-200/50 text-xs">基于精选表 Schema 生成分步计划</div>
-              </div>
-            </div>
-            <div className="px-3 py-1.5 bg-amber-500/10 border border-amber-500/30 rounded-lg">
-              <div className="text-white/40 text-[10px] mb-0.5">Output</div>
-              <div className="text-amber-300 text-xs font-mono">Step-by-Step Plan</div>
+              <div className="w-1.5 h-1.5 bg-blue-400/50 rounded-full"></div>
+              <div>生成 refined instruction、constraints 与 handoff payload</div>
             </div>
           </div>
-          <div className="mt-3 text-white/50 text-[11px]">
-            仅接收 Router 选中的表 Schema → Context 纯净 → 生成质量高
+        </motion.div>
+
+        {/* Wide Banner Block */}
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="col-span-12 bg-white/[0.02] rounded-[24px] px-6 py-4 border border-white/[0.06] hover:bg-white/[0.04] hover:border-white/[0.12] transition-colors flex items-center gap-4"
+        >
+          <div className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center border border-blue-500/20 flex-shrink-0">
+            <Globe className="w-4 h-4 text-blue-400" />
           </div>
-        </div>
-      </motion.div>
+          <span className="text-[12px] text-white/60 font-medium">
+            Agent 1 的输出不是一段普通 Prompt，而是交给 Agent 2 的结构化 Plan 包：包含 baseline、候选表、refined instruction 与执行约束。
+          </span>
+        </motion.div>
+      </div>
     </div>
   );
 }
