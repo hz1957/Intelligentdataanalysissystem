@@ -40,7 +40,7 @@ export function Slide6() {
           transition={{ duration: 0.6 }}
           className="text-center mb-7"
         >
-          <h2 className="text-4xl font-bold text-[#282562] mb-3">Biz Agent 平台的核心价值</h2>
+          <h2 className="text-4xl font-bold text-[#282562] mb-3">Agent 平台的核心价值</h2>
           <p className="text-lg text-[#6f6a86]">
             不只是一个单点工具，而是一套支持建设、运行和持续优化的业务平台
           </p>

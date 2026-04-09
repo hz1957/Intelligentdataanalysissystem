@@ -31,7 +31,7 @@ export function Slide1() {
         >
           <span className="inline-flex items-center gap-2 rounded-full border border-[#d9d4e6] bg-white px-4 py-2 text-sm font-medium text-[#C8242B]">
             <Sparkles className="h-4 w-4" />
-            Biz Agent 平台方案
+            Agent 平台方案
           </span>
         </motion.div>
 
