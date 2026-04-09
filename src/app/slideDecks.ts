@@ -24,12 +24,23 @@ import { Slide10 as BusinessSlide10 } from '@/app/components/business/Slide10';
 import { Slide11 as BusinessSlide11 } from '@/app/components/business/Slide11';
 import { Slide12 as BusinessSlide12 } from '@/app/components/business/Slide12';
 import { Slide13 as BusinessSlide13 } from '@/app/components/business/Slide13';
-import { Slide14 as BusinessSlide14 } from '@/app/components/business/Slide14';
 import { Slide15 as BusinessSlide15 } from '@/app/components/business/Slide15';
+import { Slide1 as BusinessProSlide1 } from '@/app/components/business_pro/Slide1';
+import { Slide2 as BusinessProSlide2 } from '@/app/components/business_pro/Slide2';
+import { Slide3 as BusinessProSlide3 } from '@/app/components/business_pro/Slide3';
+import { Slide4 as BusinessProSlide4 } from '@/app/components/business_pro/Slide4';
+import { Slide6 as BusinessProSlide6 } from '@/app/components/business_pro/Slide6';
+import { Slide7 as BusinessProSlide7 } from '@/app/components/business_pro/Slide7';
+import { Slide10 as BusinessProSlide10 } from '@/app/components/business_pro/Slide10';
+import { Slide11 as BusinessProSlide11 } from '@/app/components/business_pro/Slide11';
+import { Slide12 as BusinessProSlide12 } from '@/app/components/business_pro/Slide12';
+import { Slide13 as BusinessProSlide13 } from '@/app/components/business_pro/Slide13';
+import { Slide14 as BusinessProSlide14 } from '@/app/components/business_pro/Slide14';
+import { Slide15 as BusinessProSlide15 } from '@/app/components/business_pro/Slide15';
 
 type SlideComponent = ComponentType;
 
-export type SlideDeckId = 'technical' | 'business';
+export type SlideDeckId = 'technical' | 'business' | 'business_pro';
 
 export type SlideDeck = {
   id: SlideDeckId;
@@ -61,7 +72,7 @@ export const slideDecks: Record<SlideDeckId, SlideDeck> = {
   },
   business: {
     id: 'business',
-    label: '业务版',
+    label: 'Biz Agent',
     slides: [
       BusinessSlide1,
       BusinessSlide2,
@@ -73,8 +84,25 @@ export const slideDecks: Record<SlideDeckId, SlideDeck> = {
       BusinessSlide11,
       BusinessSlide12,
       BusinessSlide13,
-      BusinessSlide14,
       BusinessSlide15
+    ]
+  },
+  business_pro: {
+    id: 'business_pro',
+    label: 'Biz Agent',
+    slides: [
+      BusinessProSlide1,
+      BusinessProSlide2,
+      BusinessProSlide3,
+      BusinessProSlide4,
+      BusinessProSlide6,
+      BusinessProSlide7,
+      BusinessProSlide10,
+      BusinessProSlide11,
+      BusinessProSlide12,
+      BusinessProSlide13,
+      BusinessProSlide14,
+      BusinessProSlide15
     ]
   }
 };
@@ -82,5 +110,8 @@ export const slideDecks: Record<SlideDeckId, SlideDeck> = {
 export function resolveSlideDeckId(search: string, envDeck?: string): SlideDeckId {
   const params = new URLSearchParams(search);
   const requestedDeck = params.get('deck') ?? envDeck ?? 'business';
-  return requestedDeck === 'business' ? 'business' : 'technical';
+  if (requestedDeck === 'business' || requestedDeck === 'business_pro' || requestedDeck === 'technical') {
+    return requestedDeck;
+  }
+  return 'business';
 }

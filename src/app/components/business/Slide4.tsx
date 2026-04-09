@@ -1,136 +1,99 @@
 import { motion } from 'motion/react';
-import { MessageSquare, Brain, Box, Globe, DownloadCloud } from 'lucide-react';
+import { AppWindow, Bot, ArrowRightLeft, CheckCircle2 } from 'lucide-react';
 import { BusinessSectionShell } from '@/app/components/business/BusinessSectionShell';
+
+const rows = [
+  ['操作方式', '通过菜单、按钮和表单逐步操作', '可以直接提出任务或问题，由系统理解后推进'],
+  ['流程推进', '流程相对固定，用户按既定路径执行', '围绕目标组织步骤，并根据过程动态调整'],
+  ['赋能模式', '以提供固定功能为主', '以推进业务任务完成为主']
+];
 
 export function Slide4() {
   return (
-    <BusinessSectionShell eyebrow="PLANNING">
-    <div className="max-w-6xl w-full mx-auto">
-      <motion.div
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        className="text-center mb-6"
-      >
-        <div className="inline-flex items-center gap-3 mb-3">
-          <MessageSquare className="w-9 h-9 text-[#282562]" />
-          <h2 className="text-4xl font-bold text-[#282562]">需求进入系统后会发生什么</h2>
-        </div>
-        <p className="text-base text-[#6f6a86]">系统先理解业务需求，再生成一份清晰的执行方案</p>
-      </motion.div>
-
-      <div className="grid grid-cols-12 gap-5 max-w-5xl mx-auto relative">
+    <BusinessSectionShell eyebrow="AGENT VS SOFTWARE">
+      <div className="max-w-6xl w-full mx-auto">
         <motion.div
-          initial={{ y: 20, opacity: 0 }}
+          initial={{ y: -16, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="col-span-12 md:col-span-6 md:row-span-2 bg-white rounded-[28px] p-6 border border-[#d9d4e6] shadow-[0_14px_32px_rgba(40,37,98,0.08)] flex flex-col"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-7"
         >
-          <div className="flex items-center gap-4 mb-4">
-            <div className="w-11 h-11 rounded-2xl bg-[#f8f6fb] flex items-center justify-center border border-[#d9d4e6]">
-              <Brain className="w-5 h-5 text-[#282562]" />
+          <h2 className="text-4xl font-bold text-[#282562] mb-3">智能体与传统应用系统</h2>
+          <p className="text-lg text-[#6f6a86]">传统系统强调固定功能，智能体更强调围绕目标完成任务</p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-5xl mx-auto">
+          <motion.div
+            initial={{ x: -18, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.55, delay: 0.1 }}
+            className="rounded-[28px] border border-[#d9d4e6] bg-white p-6 shadow-[0_14px_32px_rgba(40,37,98,0.08)]"
+          >
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl border border-[#d1cbe4] bg-[#f8f6fb]">
+              <AppWindow className="h-6 w-6 text-[#282562]" />
             </div>
-            <div>
-              <h3 className="text-[#282562] font-bold text-lg tracking-tight">需求理解与澄清</h3>
-              <div className="text-[#C8242B]/75 text-[11px] font-medium">从自然语言到明确任务</div>
+            <h3 className="text-xl font-bold text-[#282562] mb-2">传统应用系统</h3>
+            <p className="text-sm leading-relaxed text-slate-600">
+              交互方式和功能路径大多预先设定，用户需要理解系统结构，并按固定步骤完成操作。
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ x: 18, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.55, delay: 0.2 }}
+            className="rounded-[28px] border border-[#d9d4e6] bg-white p-6 shadow-[0_14px_32px_rgba(40,37,98,0.08)]"
+          >
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl border border-[#d1cbe4] bg-[#f8f6fb]">
+              <Bot className="h-6 w-6 text-[#282562]" />
             </div>
+            <h3 className="text-xl font-bold text-[#282562] mb-2">新兴智能体形态</h3>
+            <p className="text-sm leading-relaxed text-slate-600">
+              以任务目标为起点，系统自动组织所需资料、规则和工具，并推动后续执行与结果交付。
+            </p>
+          </motion.div>
+        </div>
+
+        <motion.div
+          initial={{ y: 18, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.35 }}
+          className="mt-6 max-w-5xl mx-auto rounded-[28px] border border-[#d9d4e6] bg-white p-5 shadow-[0_14px_32px_rgba(40,37,98,0.08)]"
+        >
+          <div className="flex items-center gap-2 mb-4">
+            <ArrowRightLeft className="h-5 w-5 text-[#C8242B]" />
+            <h3 className="text-base font-bold text-[#282562]">区别</h3>
           </div>
 
-          <div className="flex flex-col gap-2.5 flex-1 justify-center">
-            <div className="bg-[#f8f6fb] px-4 py-3 rounded-xl border border-[#e5dfed]">
-              <div className="text-[#282562] text-[12px] font-bold mb-1">识别业务目标</div>
-              <div className="text-slate-500 text-[10px]">明确是探索分析、流程修改还是历史结果延续。</div>
-            </div>
-            <div className="bg-[#f8f6fb] px-4 py-3 rounded-xl border border-[#e5dfed]">
-              <div className="text-[#282562] text-[12px] font-bold mb-1">确定数据范围</div>
-              <div className="text-slate-500 text-[10px]">自动识别可能涉及的数据域、表和关键业务条件。</div>
-            </div>
-            <div className="bg-[#f8f6fb] px-4 py-3 rounded-xl border border-[#e5dfed]">
-              <div className="text-[#282562] text-[12px] font-bold mb-1">补齐关键上下文</div>
-              <div className="text-slate-500 text-[10px]">必要时追问或读取远端最新状态，避免因信息缺失导致执行偏差。</div>
-            </div>
+          <div className="grid grid-cols-[110px_1fr_1fr] gap-3 text-sm">
+            <div className="text-[#C8242B] font-semibold">对比项</div>
+            <div className="text-[#282562] font-bold">传统软件</div>
+            <div className="text-[#282562] font-bold">智能体</div>
+
+            {rows.map(([label, left, right]) => (
+              <div key={label} className="contents">
+                <div className="text-slate-500 border-t border-[#ece7f2] pt-3">{label}</div>
+                <div className="text-slate-600 border-t border-[#ece7f2] pt-3">{left}</div>
+                <div className="text-slate-600 border-t border-[#ece7f2] pt-3">{right}</div>
+              </div>
+            ))}
           </div>
         </motion.div>
 
         <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="col-span-12 md:col-span-6 bg-white rounded-[28px] p-5 border border-[#d9d4e6] shadow-[0_14px_32px_rgba(40,37,98,0.08)] flex flex-col justify-between"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="mt-6 mx-auto max-w-5xl rounded-[24px] border border-[#d9d4e6] bg-[#f8f6fb] px-5 py-4 shadow-[0_14px_32px_rgba(40,37,98,0.06)]"
         >
-          <div>
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-10 h-10 rounded-xl bg-[#f8f6fb] flex items-center justify-center border border-[#d9d4e6]">
-                <DownloadCloud className="w-5 h-5 text-[#282562]" />
-              </div>
-              <div>
-                <h3 className="text-[#282562] font-bold text-sm tracking-tight">上下文与远端状态对齐</h3>
-                <div className="text-[#C8242B]/75 text-[10px] font-medium">历史流程 / 远端最新状态 / 当前上下文</div>
-              </div>
-            </div>
-            <p className="text-slate-500 text-[11px] leading-relaxed mb-3">
-              系统不会把每次需求都当成全新任务，而是会优先读取已有流程、历史版本和上下文，让修改建立在当前真实状态上。
+          <div className="flex items-start gap-3">
+            <CheckCircle2 className="h-5 w-5 text-[#C8242B] mt-0.5 shrink-0" />
+            <p className="text-sm leading-relaxed text-slate-600">
+              两者并不是简单替代关系。更现实的路径，是让智能体建立在现有系统之上，打通分散流程，提升跨环节协同效率。
             </p>
           </div>
-
-          <div className="grid grid-cols-2 gap-2 mt-auto">
-            <div className="bg-[#f8f6fb] p-2.5 rounded-xl border border-[#e5dfed] text-[10px] text-slate-500">
-              <div className="text-[#282562] font-bold mb-1">读取已有流程</div>
-              <div className="leading-snug">优先继承已有分析流程与历史结果。</div>
-            </div>
-            <div className="bg-[#f3eef4] p-2.5 rounded-xl border border-[#d9d4e6] text-[10px] text-slate-500">
-              <div className="text-[#282562] font-bold mb-1">避免状态偏差</div>
-              <div className="leading-snug">在正式执行前再次核对当前状态。</div>
-            </div>
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="col-span-12 md:col-span-6 bg-white rounded-[28px] p-5 border border-[#d9d4e6] shadow-[0_14px_32px_rgba(40,37,98,0.08)]"
-        >
-          <div className="flex items-center gap-3 mb-3">
-            <div className="w-10 h-10 rounded-xl bg-[#f8f6fb] flex items-center justify-center border border-[#d9d4e6]">
-              <Box className="w-5 h-5 text-[#282562]" />
-            </div>
-            <div>
-              <h3 className="text-[#282562] font-bold text-sm tracking-tight">形成执行方案</h3>
-              <div className="text-[#C8242B]/75 text-[10px] font-medium">任务边界明确后再交付执行层</div>
-            </div>
-          </div>
-          <div className="text-slate-600 text-[11px] space-y-2.5 leading-relaxed mt-1">
-            <div className="flex items-center gap-3">
-              <div className="w-1.5 h-1.5 bg-[#C8242B]/70 rounded-full" />
-              <div>明确涉及哪些数据域和分析对象</div>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="w-1.5 h-1.5 bg-[#C8242B]/70 rounded-full" />
-              <div>定义本次任务是新建、调整还是延续既有流程</div>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="w-1.5 h-1.5 bg-[#C8242B]/70 rounded-full" />
-              <div>把目标、约束和输出要求整理成结构化方案</div>
-            </div>
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="col-span-12 bg-white rounded-[24px] px-6 py-3 border border-[#d9d4e6] shadow-[0_14px_32px_rgba(40,37,98,0.08)] flex items-center gap-4"
-        >
-          <div className="w-8 h-8 rounded-full bg-[#f3eef4] flex items-center justify-center border border-[#d9d4e6] flex-shrink-0">
-            <Globe className="w-4 h-4 text-[#282562]" />
-          </div>
-          <span className="text-[12px] text-slate-600 font-medium">
-            交给执行层的不是一句模糊指令，而是一份已经完成上下文对齐、边界明确的结构化任务方案。
-          </span>
         </motion.div>
       </div>
-    </div>
     </BusinessSectionShell>
   );
 }

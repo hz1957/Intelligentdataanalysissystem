@@ -13,7 +13,7 @@ export default function App() {
   const activeDeck = slideDecks[deckId];
   const totalSlides = activeDeck.slides.length;
   const ActiveSlide = activeDeck.slides[currentSlide];
-  const isBusinessDeck = deckId === 'business';
+  const isBusinessDeck = deckId === 'business' || deckId === 'business_pro';
   const renderedSlide = isBusinessDeck ? (
     <ActiveSlide />
   ) : (

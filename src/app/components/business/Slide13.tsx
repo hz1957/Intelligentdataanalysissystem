@@ -1,144 +1,99 @@
 import { motion } from 'motion/react';
-import { AppWindow, ArrowRight, BookOpenText, SearchCode, Sparkles, FileSpreadsheet, RefreshCcw, Waypoints } from 'lucide-react';
+import { ShieldCheck, Settings2, Users, Database, Wrench, FolderCog } from 'lucide-react';
 import { BusinessSectionShell } from '@/app/components/business/BusinessSectionShell';
 
+const roles = [
+  {
+    icon: ShieldCheck,
+    title: '治理者',
+    desc: '系统管理员，关注平台稳定、权限边界、统一治理。'
+  },
+  {
+    icon: Settings2,
+    title: '建设者',
+    desc: 'Agent 管理员，负责创建、配置、运营和持续优化智能体。'
+  },
+  {
+    icon: Users,
+    title: '使用者',
+    desc: '普通用户，关注是否好用、有效、可靠，能否真正完成任务。'
+  }
+];
+
+const builderTasks = [
+  {
+    icon: FolderCog,
+    title: '创建与定义',
+    desc: '创建智能体，定义岗位角色和目标边界。'
+  },
+  {
+    icon: Database,
+    title: '知识与经验维护',
+    desc: '维护知识库、记忆和可复用经验，让系统能够调用业务资料作为判断依据。'
+  },
+  {
+    icon: Wrench,
+    title: '工具与运行配置',
+    desc: '配置提示词、规则、project 模板和执行方式，并管理 Skill、MCP、外部系统接入。'
+  }
+];
+
 export function Slide13() {
-    return (
-        <BusinessSectionShell eyebrow="AGENTIC RAG">
-        <div className="max-w-6xl w-full mx-auto pt-5">
+  return (
+    <BusinessSectionShell eyebrow="PLATFORM ROLES">
+      <div className="max-w-6xl w-full mx-auto">
+        <motion.div
+          initial={{ y: -16, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-7"
+        >
+          <h2 className="text-4xl font-bold text-[#282562] mb-3">平台中的角色，以及建设者负责什么</h2>
+          <p className="text-lg text-[#6f6a86]">平台中通常有治理者、建设者和使用者三类角色，其中建设者负责把智能体真正建设和运营起来</p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto mb-6">
+          {roles.map((item, index) => (
             <motion.div
-                initial={{ y: -20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.6 }}
-                className="max-w-5xl mx-auto mb-6"
+              key={item.title}
+              initial={{ y: 18, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.45, delay: 0.12 + index * 0.06 }}
+              className="rounded-[26px] border border-[#d9d4e6] bg-white p-5 shadow-[0_14px_32px_rgba(40,37,98,0.08)]"
             >
-                <div className="flex items-center gap-4 rounded-[28px] border border-[#d9d4e6] bg-[#f6f4fa] px-6 py-5 shadow-[0_10px_24px_rgba(40,37,98,0.06)]">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#cbc4e2] bg-white shrink-0">
-                        <AppWindow className="w-6 h-6 text-[#282562]" />
-                    </div>
-                    <div className="min-w-0">
-                        <h2 className="text-3xl font-bold text-[#282562] leading-tight">Context Engine 如何接入业务知识</h2>
-                        <p className="text-sm text-[#6f6a86] mt-1">优先走轻量检索，复杂材料再升级到更主动的检索方式</p>
-                    </div>
-                </div>
+              <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl border border-[#d1cbe4] bg-[#f8f6fb]">
+                <item.icon className="h-5 w-5 text-[#282562]" />
+              </div>
+              <h3 className="text-base font-bold text-[#282562] mb-2">{item.title}</h3>
+              <p className="text-[12px] leading-relaxed text-slate-600">{item.desc}</p>
             </motion.div>
-
-            <div className="grid grid-cols-12 gap-5 max-w-5xl mx-auto">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    className="col-span-12 md:col-span-6 bg-white rounded-[28px] p-6 border border-[#d9d4e6] shadow-[0_14px_32px_rgba(40,37,98,0.08)]"
-                >
-                    <div className="flex items-center gap-3 mb-5">
-                        <div className="w-10 h-10 rounded-xl bg-[#f8f6fb] flex items-center justify-center border border-[#d1cbe4]">
-                            <BookOpenText className="w-5 h-5 text-[#282562]" />
-                        </div>
-                        <div>
-                            <h3 className="text-[14px] font-bold text-[#282562]">标准 RAG</h3>
-                            <div className="text-[10px] text-slate-500">适合 SOP、FAQ、规范和常规业务资料</div>
-                        </div>
-                    </div>
-                    <ul className="space-y-3 text-[11px] text-slate-600">
-                        <li className="flex items-start gap-2">
-                            <span className="text-[#C8242B] mt-0.5">•</span>
-                            先做文本解析、切块和索引，把原始文档变成可检索的业务知识库。
-                        </li>
-                        <li className="flex items-start gap-2">
-                            <span className="text-[#C8242B] mt-0.5">•</span>
-                            查询时走关键词检索、向量检索和结果重排，优先用更轻量的方法返回相关证据。
-                        </li>
-                        <li className="flex items-start gap-2">
-                            <span className="text-[#C8242B] mt-0.5">•</span>
-                            适合结构清晰、检索边界稳定的业务材料。
-                        </li>
-                    </ul>
-                </motion.div>
-
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.3 }}
-                    className="col-span-12 md:col-span-6 bg-white rounded-[28px] p-6 border border-[#d9d4e6] shadow-[0_14px_32px_rgba(40,37,98,0.08)]"
-                >
-                    <div className="flex items-center gap-3 mb-5">
-                        <div className="w-10 h-10 rounded-xl bg-[#f8f6fb] flex items-center justify-center border border-[#d1cbe4]">
-                            <SearchCode className="w-5 h-5 text-[#282562]" />
-                        </div>
-                        <div>
-                            <h3 className="text-[14px] font-bold text-[#282562]">Skill 引导的 Agentic RAG</h3>
-                            <div className="text-[10px] text-slate-500">适合复杂文档、异构材料和深度业务场景</div>
-                        </div>
-                    </div>
-                    <div className="bg-[#f8f6fb] p-3 rounded-xl border border-[#e6e1ec] mb-3 space-y-2 text-[11px] text-slate-600">
-                        <div className="rounded-lg border border-[#e6e1ec] bg-white px-3 py-2">
-                            <div className="text-[#282562] font-bold mb-1">业务导航</div>
-                            <div className="leading-relaxed">由技术人员补充业务导航文档，帮助 Agent 先定位该去哪些知识目录里查。</div>
-                        </div>
-                        <div className="rounded-lg border border-[#e6e1ec] bg-white px-3 py-2">
-                            <div className="text-[#282562] font-bold mb-1">主动检索</div>
-                            <div className="leading-relaxed">Agent 可以改写关键词并调用不同工具，对表格、脚本和长文档做定点查找。</div>
-                        </div>
-                    </div>
-                    <div className="flex items-center justify-center gap-2 text-[11px] text-slate-500">
-                        <span>业务问题</span>
-                        <ArrowRight className="w-3.5 h-3.5 text-[#b4aec8]" />
-                        <span>定位资料</span>
-                        <ArrowRight className="w-3.5 h-3.5 text-[#b4aec8]" />
-                        <span>多轮检索</span>
-                        <ArrowRight className="w-3.5 h-3.5 text-[#b4aec8]" />
-                        <span>返回依据</span>
-                    </div>
-                    <p className="text-[11px] text-slate-500 leading-relaxed mt-3">
-                        这样既能覆盖常规资料检索，也能让 Biz Agent 更快适配复杂业务场景。
-                    </p>
-                </motion.div>
-
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.4 }}
-                    className="col-span-12 rounded-[28px] border border-[#d9d4e6] bg-white px-5 py-4 shadow-[0_14px_32px_rgba(40,37,98,0.08)]"
-                >
-                    <div className="flex items-center gap-2 text-[12px] text-[#6f6a86] mb-4">
-                        <Sparkles className="w-4 h-4 text-[#C8242B]" />
-                        默认先走成本更低的标准检索，只有在资料复杂或首轮结果不足时，才升级到更主动的 Agentic 检索。
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                        <div className="rounded-xl border border-[#e6e1ec] bg-[#f8f6fb] px-4 py-3">
-                            <div className="flex items-center gap-2 text-[#282562] font-bold text-[12px] mb-1">
-                                <FileSpreadsheet className="w-3.5 h-3.5 text-[#C8242B]" />
-                                处理复杂资料更灵活
-                            </div>
-                            <div className="text-slate-500 text-[11px] leading-relaxed">
-                                遇到 Excel、表格或脚本类资料时，不只检索文本，还能先做计算和整理，再返回更可用的结果。
-                            </div>
-                        </div>
-
-                        <div className="rounded-xl border border-[#e6e1ec] bg-[#f8f6fb] px-4 py-3">
-                            <div className="flex items-center gap-2 text-[#282562] font-bold text-[12px] mb-1">
-                                <RefreshCcw className="w-3.5 h-3.5 text-[#282562]" />
-                                检索路径可以纠偏
-                            </div>
-                            <div className="text-slate-500 text-[11px] leading-relaxed">
-                                如果首轮找到的资料不对，Agent 可以换关键词、换资料范围，再走下一轮检索。
-                            </div>
-                        </div>
-
-                        <div className="rounded-xl border border-[#e6e1ec] bg-[#f8f6fb] px-4 py-3">
-                            <div className="flex items-center gap-2 text-[#282562] font-bold text-[12px] mb-1">
-                                <Waypoints className="w-3.5 h-3.5 text-[#282562]" />
-                                更适合长链路问题
-                            </div>
-                            <div className="text-slate-500 text-[11px] leading-relaxed">
-                                能逐步处理跨多个文档、多个步骤的复杂业务问题，而不是只看一轮召回结果。
-                            </div>
-                        </div>
-                    </div>
-                </motion.div>
-            </div>
+          ))}
         </div>
-        </BusinessSectionShell>
-    );
+
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.35 }}
+          className="max-w-5xl mx-auto rounded-[28px] border border-[#d9d4e6] bg-white p-5 shadow-[0_14px_32px_rgba(40,37,98,0.08)]"
+        >
+          <div className="mb-4 text-base font-bold text-[#282562]">建设者的主要工作</div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {builderTasks.map((item) => (
+              <div key={item.title} className="rounded-[22px] border border-[#e5dfed] bg-[#f8f6fb] p-4">
+                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl border border-[#d1cbe4] bg-white">
+                  <item.icon className="h-5 w-5 text-[#282562]" />
+                </div>
+                <div className="text-sm font-bold text-[#282562] mb-1.5">{item.title}</div>
+                <div className="text-[12px] leading-relaxed text-slate-600">{item.desc}</div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-4 rounded-[20px] border border-[#e5dfed] bg-[#f8f6fb] px-4 py-3 text-[12px] leading-relaxed text-slate-600">
+            除了上面三类工作，建设者还需要收集、整理、归档智能体产生的文件、报告和过程产物，并根据业务反馈持续优化智能体效果。
+          </div>
+        </motion.div>
+      </div>
+    </BusinessSectionShell>
+  );
 }

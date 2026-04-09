@@ -1,108 +1,72 @@
 import { motion } from 'motion/react';
-import { BrainCircuit, FileText, History, Layers3, UserRound } from 'lucide-react';
+import { Search, UserRoundCog, Files, PlugZap, FlaskConical, Rocket } from 'lucide-react';
 import { BusinessSectionShell } from '@/app/components/business/BusinessSectionShell';
 
-const layers = [
-    {
-        icon: History,
-        title: '当前任务上下文',
-        desc: '保留当前指令、近期对话和正在推进的任务状态，保证 Agent 先理解眼前要做什么。'
-    },
-    {
-        icon: UserRound,
-        title: '长期业务记忆',
-        desc: '沉淀用户偏好、常见约束和历史经验，让后续任务不必每次从零开始重新解释。'
-    },
-    {
-        icon: FileText,
-        title: '外挂业务知识',
-        desc: '按需接入制度文档、SOP、产品资料和数据说明，把业务事实补进上下文。'
-    }
+const steps = [
+  {
+    icon: Search,
+    title: '1. 选场景',
+    desc: '先选一个高频、边界清晰、价值明确的业务场景。'
+  },
+  {
+    icon: UserRoundCog,
+    title: '2. 定角色',
+    desc: '明确智能体负责什么、不负责什么，以及输出标准。'
+  },
+  {
+    icon: Files,
+    title: '3. 准备资料',
+    desc: '整理制度、SOP、模板和示例结果，作为业务依据。'
+  },
+  {
+    icon: PlugZap,
+    title: '4. 接系统',
+    desc: '按需要接入相关系统、接口和可调用工具。'
+  },
+  {
+    icon: FlaskConical,
+    title: '5. 小范围试用',
+    desc: '在可控范围内试运行，观察效果并修正问题。'
+  },
+  {
+    icon: Rocket,
+    title: '6. 持续优化',
+    desc: '正式使用后，结合反馈持续调整能力和流程。'
+  }
 ];
 
 export function Slide12() {
-    return (
-        <BusinessSectionShell eyebrow="CONTEXT ENGINE">
-        <div className="max-w-6xl w-full mx-auto pt-5">
+  return (
+    <BusinessSectionShell eyebrow="BUILDING AN AGENT">
+      <div className="max-w-6xl w-full mx-auto">
+        <motion.div
+          initial={{ y: -16, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-7"
+        >
+          <h2 className="text-4xl font-bold text-[#282562] mb-3">业务智能体如何建设</h2>
+          <p className="text-lg text-[#6f6a86]">通常不是一次性配置完成，而是沿着“场景选择、资料准备、系统接入、试用优化”的路径逐步推进</p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 max-w-5xl mx-auto">
+          {steps.map((item, index) => (
             <motion.div
-                initial={{ y: -20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.6 }}
-                className="max-w-5xl mx-auto mb-6"
+              key={item.title}
+              initial={{ y: 18, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.45, delay: 0.12 + index * 0.06 }}
+              className="rounded-[26px] border border-[#d9d4e6] bg-white p-5 shadow-[0_14px_32px_rgba(40,37,98,0.08)]"
             >
-                <div className="flex items-center gap-4 rounded-[28px] border border-[#d9d4e6] bg-[#f6f4fa] px-6 py-5 shadow-[0_10px_24px_rgba(40,37,98,0.06)]">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#cbc4e2] bg-white shrink-0">
-                        <BrainCircuit className="w-6 h-6 text-[#282562]" />
-                    </div>
-                    <div className="min-w-0">
-                        <h2 className="text-3xl font-bold text-[#282562] leading-tight">下一步：通过 Context Engine 扩展 Biz Agent</h2>
-                        <p className="text-sm text-[#6f6a86] mt-1">把当前任务、长期记忆和业务知识按需组合，提升业务理解能力</p>
-                    </div>
-                </div>
+              <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl border border-[#d1cbe4] bg-[#f8f6fb]">
+                <item.icon className="h-5 w-5 text-[#282562]" />
+              </div>
+              <h3 className="text-base font-bold text-[#282562] mb-2">{item.title}</h3>
+              <p className="text-[12px] leading-relaxed text-slate-600">{item.desc}</p>
             </motion.div>
-
-            <div className="grid grid-cols-12 gap-5 max-w-5xl mx-auto">
-                <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    className="col-span-12 md:col-span-7 bg-white rounded-[28px] p-6 border border-[#d9d4e6] shadow-[0_14px_32px_rgba(40,37,98,0.08)]"
-                >
-                    <div className="flex items-center gap-2 mb-4">
-                        <div className="w-2 h-5 bg-[#C8242B] rounded-full" />
-                        <h3 className="text-sm font-bold text-[#282562]">三层上下文</h3>
-                    </div>
-                    <div className="space-y-3">
-                        {layers.map((item, i) => (
-                            <div key={i} className="flex gap-3 items-start p-4 bg-[#f8f6fb] rounded-xl border border-[#e6e1ec]">
-                                <div className="w-9 h-9 flex items-center justify-center bg-white border border-[#d1cbe4] rounded-xl shrink-0">
-                                    <item.icon className="w-4 h-4 text-[#282562]" />
-                                </div>
-                                <div>
-                                    <div className="text-[#282562] font-bold text-[13px] mb-1">{item.title}</div>
-                                    <div className="text-slate-500 text-[11px] leading-relaxed">{item.desc}</div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </motion.div>
-
-                <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: 0.3 }}
-                    className="col-span-12 md:col-span-5 flex flex-col gap-5"
-                >
-                    <div className="bg-white rounded-[28px] p-6 border border-[#d9d4e6] flex-1 shadow-[0_14px_32px_rgba(40,37,98,0.08)]">
-                        <div className="flex items-center gap-2 mb-4">
-                            <Layers3 className="w-4 h-4 text-[#C8242B]" />
-                            <h3 className="text-sm font-bold text-[#282562]">上下文组装方式</h3>
-                        </div>
-                        <div className="bg-[#f8f6fb] p-3 rounded-xl border border-[#e6e1ec] text-[11px] text-slate-500 space-y-2">
-                            <div className="rounded-lg border border-[#e6e1ec] bg-white px-3 py-2">
-                                <div className="text-[#282562] font-bold mb-1">固定基础</div>
-                                <div className="leading-relaxed">System Prompt + User Instruction</div>
-                            </div>
-                            <div className="rounded-lg border border-[#e6e1ec] bg-white px-3 py-2">
-                                <div className="text-[#282562] font-bold mb-1">会话层</div>
-                                <div className="leading-relaxed">Recent Messages + Task State</div>
-                            </div>
-                            <div className="rounded-lg border border-[#e6e1ec] bg-white px-3 py-2">
-                                <div className="text-[#282562] font-bold mb-1">记忆层</div>
-                                <div className="leading-relaxed">Long-term Memory</div>
-                            </div>
-                            <div className="rounded-lg border border-[#e6e1ec] bg-white px-3 py-2">
-                                <div className="text-[#282562] font-bold mb-1">知识层</div>
-                                <div className="leading-relaxed">Optional Knowledge / Documents</div>
-                            </div>
-                        </div>
-                        <p className="text-[11px] text-slate-500 mt-4 leading-relaxed">
-                            不是每次都把所有材料塞进模型，而是按任务需要动态取用真正相关的上下文。
-                        </p>
-                    </div>
-                </motion.div>
-            </div>
+          ))}
         </div>
-        </BusinessSectionShell>
-    );
+      </div>
+    </BusinessSectionShell>
+  );
 }

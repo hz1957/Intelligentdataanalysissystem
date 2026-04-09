@@ -1,112 +1,87 @@
 import { motion } from 'motion/react';
-import { RefreshCw, ShieldCheck, XCircle } from 'lucide-react';
+import { AppWindow, FolderKanban, BookOpenText, Wrench, History, ShieldCheck, ArrowRight } from 'lucide-react';
 import { BusinessSectionShell } from '@/app/components/business/BusinessSectionShell';
+
+const parts = [
+  {
+    icon: AppWindow,
+    title: '交互与入口',
+    desc: '用户在这里提出任务，并查看系统返回的结果。'
+  },
+  {
+    icon: FolderKanban,
+    title: '专属工作空间',
+    desc: '为每个任务保留独立的资料、过程和结果记录。'
+  },
+  {
+    icon: BookOpenText,
+    title: '业务资料中心',
+    desc: '统一管理制度、手册和参考文档，为输出提供专业依据。'
+  },
+  {
+    icon: History,
+    title: '历史通信记录',
+    desc: '记录历史交互和使用偏好，帮助系统理解后续任务。'
+  },
+  {
+    icon: Wrench,
+    title: '工具服务桥梁',
+    desc: '打通内部系统接口和功能组件，便于按规则调用。'
+  },
+  {
+    icon: ShieldCheck,
+    title: '安全合规治理',
+    desc: '管理权限边界、数据可见范围和风险控制要求。'
+  }
+];
 
 export function Slide7() {
   return (
-    <BusinessSectionShell eyebrow="RELIABILITY">
-    <div className="max-w-6xl w-full mx-auto pt-5">
-      <motion.div
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        className="text-center mb-5"
-      >
-        <div className="inline-flex items-center gap-3 mb-3">
-          <ShieldCheck className="w-9 h-9 text-[#C8242B]" />
-          <h2 className="text-4xl font-bold text-[#282562]">可靠性保障机制</h2>
-        </div>
-        <p className="text-base text-[#6f6a86]">把试错成本留在系统内部，而不是暴露给业务用户</p>
-      </motion.div>
-
-      <div className="max-w-5xl mx-auto">
+    <BusinessSectionShell eyebrow="PLATFORM PARTS">
+      <div className="max-w-6xl w-full mx-auto">
         <motion.div
-          initial={{ y: 20, opacity: 0 }}
+          initial={{ y: -16, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-white rounded-[28px] p-5 border border-[#d9d4e6] shadow-[0_14px_32px_rgba(40,37,98,0.08)]"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-7"
         >
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 rounded-xl bg-[#f8f6fb] flex items-center justify-center border border-[#d9d4e6]">
-              <RefreshCw className="w-5 h-5 text-[#282562]" />
-            </div>
-            <div>
-              <h3 className="text-[#282562] font-bold text-base tracking-tight">执行前后自动校验</h3>
-              <div className="text-[#C8242B]/75 text-[11px] font-medium">Controlled Validation</div>
-            </div>
-          </div>
+          <h2 className="text-4xl font-bold text-[#282562] mb-3">平台的核心组成</h2>
+          <p className="text-lg text-[#6f6a86]">由交互入口、资料管理、工具接入和安全控制等部分共同支撑运行</p>
+        </motion.div>
 
-          <div className="flex flex-wrap gap-2 mb-4">
-            <span className="px-2 py-1 bg-[#f8f6fb] text-slate-600 border border-[#e5dfed] rounded-lg text-[10px]">结构一致性</span>
-            <span className="px-2 py-1 bg-[#f8f6fb] text-slate-600 border border-[#e5dfed] rounded-lg text-[10px]">依赖完整性</span>
-            <span className="px-2 py-1 bg-[#f8f6fb] text-slate-600 border border-[#e5dfed] rounded-lg text-[10px]">关键计算验证</span>
-          </div>
-
-          <div className="bg-[#f8f6fb] rounded-xl border border-[#e5dfed] p-4 text-[11px] text-slate-600 leading-relaxed mb-4">
-            系统不会把生成出的流程直接落到生产环境，而是会在关键步骤持续检查结构、依赖关系和计算结果，确认安全后才继续向下执行。
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-4">
-              <div className="bg-[#f8f6fb] rounded-xl border border-[#e5dfed] p-4">
-                <div className="text-[#282562] font-bold text-sm mb-2">结构一致性检查</div>
-                <div className="text-[11px] text-slate-600 leading-relaxed">
-                  检查上下游字段、连接关系和依赖是否匹配，避免流程在中途出现断裂或口径错误。
-                </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 max-w-5xl mx-auto">
+          {parts.map((item, index) => (
+            <motion.div
+              key={item.title}
+              initial={{ y: 18, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.45, delay: 0.12 + index * 0.06 }}
+              className="rounded-[26px] border border-[#d9d4e6] bg-white p-5 shadow-[0_14px_32px_rgba(40,37,98,0.08)]"
+            >
+              <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl border border-[#d1cbe4] bg-[#f8f6fb]">
+                <item.icon className="h-5 w-5 text-[#282562]" />
               </div>
+              <h3 className="text-base font-bold text-[#282562] mb-2">{item.title}</h3>
+              <p className="text-[12px] leading-relaxed text-slate-600">{item.desc}</p>
+            </motion.div>
+          ))}
+        </div>
 
-              <div className="bg-[#f8f6fb] rounded-xl border border-[#e5dfed] p-4">
-                <div className="text-[#282562] font-bold text-sm mb-2">关键计算试运行</div>
-                <div className="text-[11px] text-slate-600 leading-relaxed">
-                  对关键计算先做模拟验证，确认能够产出合理结果，再进入正式执行或保存。
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-[#f8f6fb] rounded-xl border border-[#e5dfed] p-4 flex flex-col">
-              <div className="text-[#282562] font-bold text-sm mb-2">失败后的处理方式</div>
-              <div className="text-[11px] text-slate-600 leading-relaxed mb-3">
-                如果校验未通过，系统会优先尝试自动修正；只有在连续失败、不收敛时，才会主动终止或切换路径。
-              </div>
-
-              <div className="grid grid-cols-2 gap-3 mt-auto">
-                <div className="bg-white rounded-xl border border-[#e5dfed] p-3 text-[11px] text-slate-600">
-                  <div className="text-[#282562] font-bold mb-1">自动修正</div>
-                  <div className="leading-relaxed">对于可修复问题，系统会继续尝试调整，而不是把半成品结果直接暴露给用户。</div>
-                </div>
-
-                <div className="bg-white rounded-xl border border-[#e5dfed] p-3 text-[11px] text-slate-600 flex items-center gap-3">
-                  <div className="flex bg-[#f8f6fb] p-2 rounded-lg border border-[#e5dfed] gap-1.5 shrink-0">
-                    <XCircle className="w-4 h-4 text-red-400/30" />
-                    <XCircle className="w-4 h-4 text-red-400/60" />
-                    <XCircle className="w-4 h-4 text-[#C8242B]" />
-                  </div>
-                  <div className="font-medium leading-relaxed">
-                    若连续多轮仍无法得到稳定结果，系统会主动中断，避免错误继续放大。
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-4 rounded-xl border border-[#e5dfed] bg-[#f8f6fb] px-4 py-3 text-[11px] text-slate-600 leading-relaxed">
-            <span className="font-bold text-[#282562]">自动回退与重建：</span>
-            如果局部调整没有产生有效结果，系统会自动回到更稳定的路径，必要时直接切换为整体重建，保证最终交付质量。
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.45 }}
+          className="mt-6 mx-auto max-w-5xl rounded-[26px] border border-[#d9d4e6] bg-[#f8f6fb] px-5 py-4 shadow-[0_14px_32px_rgba(40,37,98,0.06)]"
+        >
+          <div className="flex flex-col items-center justify-center gap-3 text-center md:flex-row md:text-left">
+            <span className="text-sm font-medium text-slate-600">自然语言提交业务目标输入</span>
+            <ArrowRight className="h-4 w-4 text-[#C8242B]" />
+            <span className="text-sm font-medium text-slate-600">系统匹配可用资料与工具</span>
+            <ArrowRight className="h-4 w-4 text-[#C8242B]" />
+            <span className="text-sm font-medium text-slate-600">生成结果并完成留存</span>
           </div>
         </motion.div>
       </div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.5 }}
-        className="mt-4 text-center"
-      >
-        <span className="text-slate-600 text-xs font-medium px-4 py-2 bg-white border border-[#d9d4e6] rounded-full inline-block shadow-[0_14px_32px_rgba(40,37,98,0.08)]">
-          目标不是让系统“尽量答对”，而是让流程在交付前就被持续校验和约束。
-        </span>
-      </motion.div>
-    </div>
     </BusinessSectionShell>
   );
 }
