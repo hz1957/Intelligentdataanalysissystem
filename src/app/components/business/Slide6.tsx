@@ -5,27 +5,27 @@ import { BusinessSectionShell } from '@/app/components/business/BusinessSectionS
 const blocks = [
   {
     icon: LayoutDashboard,
-    title: '统一调度入口',
-    desc: '让用户可以在统一入口中使用面向不同场景的智能能力。'
+    title: '统一入口',
+    desc: '让用户可以在统一入口中找到并使用不同场景下的智能体能力。'
   },
   {
     icon: FileStack,
-    title: '积累数字常识',
+    title: '资料沉淀',
     desc: '沉淀业务资料、操作规范和历史结果，作为后续复用的基础。'
   },
   {
     icon: Settings2,
-    title: '规范构建方案',
+    title: '智能体配置',
     desc: '明确智能体的职责边界、可用资源和风险控制要求。'
   },
   {
     icon: Users,
-    title: '职能协同支撑',
-    desc: '支持业务、产品、技术等角色在同一平台上协同建设和优化。'
+    title: '协同与治理',
+    desc: '支持业务、产品、技术等角色在同一平台上协同建设和统一治理。'
   },
   {
     icon: TrendingUp,
-    title: '闭环自持迭代',
+    title: '持续优化',
     desc: '根据使用反馈持续优化效果，形成长期迭代闭环。'
   }
 ];
@@ -40,9 +40,9 @@ export function Slide6() {
           transition={{ duration: 0.6 }}
           className="text-center mb-7"
         >
-          <h2 className="text-4xl font-bold text-[#282562] mb-3">Agent 平台的核心价值</h2>
+          <h2 className="text-4xl font-bold text-[#282562] mb-3">业务 Agent 平台是什么</h2>
           <p className="text-lg text-[#6f6a86]">
-            不只是一个单点工具，而是一套支持建设、运行和持续优化的业务平台
+            面向企业的智能体建设与运营平台
           </p>
         </motion.div>
 
@@ -54,8 +54,8 @@ export function Slide6() {
         >
           <div className="text-xl font-bold text-[#282562] mb-2">平台定位</div>
           <p className="text-sm leading-relaxed text-slate-600">
-            除了对话入口之外，平台更关注资料管理、工具接入、运行管理和安全控制，
-            以支持智能体在真实业务场景中稳定落地。
+            平台不只提供对话入口，还提供智能体创建、配置、资料沉淀、运行管理和协同治理能力，
+            让智能体从“会回答”走向“能长期服务业务”。
           </p>
         </motion.div>
 
