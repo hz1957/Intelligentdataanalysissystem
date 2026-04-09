@@ -5,17 +5,17 @@ import { BusinessSectionShell } from '@/app/components/business/BusinessSectionS
 const summary = [
     {
         icon: MessageCircleMore,
-        title: '超越常规对话引擎',
-        desc: '价值不在于更像聊天工具，而在于能够围绕业务目标推进任务完成。'
+        title: '不止提供对话能力',
+        desc: '平台的价值不在于更像聊天工具，而在于能够围绕业务目标推进任务完成。'
     },
     {
         icon: BookOpenText,
-        title: '深耕行业内部知识',
-        desc: '业务资料和规则越完整，系统的判断和输出就越贴近真实业务需求。'
+        title: '依赖业务知识与规则',
+        desc: '业务资料、制度和规则越完整，系统的判断和输出就越贴近真实业务需求。'
     },
     {
         icon: Wrench,
-        title: '依赖工业技术基座',
+        title: '依赖系统与工具能力',
         desc: '只有具备系统连通、工具调用和安全控制能力，复杂业务场景才真正能够落地。'
     }
 ];
@@ -32,7 +32,7 @@ export function Slide15() {
                 >
                     <h2 className="text-4xl font-bold text-[#282562] mb-3">Biz Agent：面向业务场景的智能体平台</h2>
                     <p className="text-xl text-[#6f6a86]">
-                        它不是一个独立的聊天组件，而是建立在现有业务系统和数据体系之上的智能能力平台
+                        它不是一个独立的聊天组件，而是建立在现有业务系统和数据体系之上的智能体平台
                     </p>
                 </motion.div>
 
