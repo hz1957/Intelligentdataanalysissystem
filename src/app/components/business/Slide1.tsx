@@ -1,12 +1,6 @@
 import { motion } from 'motion/react';
-import { Layers, Sparkles, Wrench, BookOpenText, UserRoundCog } from 'lucide-react';
+import { Layers, Sparkles } from 'lucide-react';
 import { BusinessSectionShell } from '@/app/components/business/BusinessSectionShell';
-
-const traits = [
-  { icon: UserRoundCog, label: '明确角色定位' },
-  { icon: Wrench, label: '掌握多样工具' },
-  { icon: BookOpenText, label: '沉淀业务记忆' }
-];
 
 export function Slide1() {
   return (
@@ -57,29 +51,10 @@ export function Slide1() {
           initial={{ y: 18, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.45 }}
-          className="mx-auto mb-10 max-w-3xl text-lg leading-relaxed text-slate-600"
+          className="mx-auto max-w-3xl text-lg leading-relaxed text-slate-600"
         >
           帮助业务团队更顺畅地借助 AI 力量，推动实际业务问题的解决与落地。
         </motion.p>
-
-        <motion.div
-          initial={{ y: 18, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.55 }}
-          className="mx-auto grid max-w-3xl grid-cols-1 gap-3 md:grid-cols-3"
-        >
-          {traits.map((item) => (
-            <div
-              key={item.label}
-              className="rounded-[22px] border border-[#d9d4e6] bg-white px-4 py-5 shadow-[0_14px_32px_rgba(40,37,98,0.08)]"
-            >
-              <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-xl border border-[#d1cbe4] bg-[#f8f6fb]">
-                <item.icon className="h-5 w-5 text-[#282562]" />
-              </div>
-              <div className="text-sm font-bold text-[#282562]">{item.label}</div>
-            </div>
-          ))}
-        </motion.div>
       </div>
     </BusinessSectionShell>
   );
