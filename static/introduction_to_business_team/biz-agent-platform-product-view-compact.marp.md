@@ -138,7 +138,7 @@ footer { color: var(--muted); font-size: 13px; }
 ## 三类核心用户
 
 <div class="grid-3">
-  <div class="card"><small>治理者</small><strong>系统管理员</strong><span class="note">关注平台稳定、权限边界、统一治理</span></div>
+  <div class="card"><small>管理者</small><strong>系统管理员</strong><span class="note">关注平台稳定、权限边界、统一治理</span></div>
   <div class="card"><small>建设者</small><strong>Agent 管理员</strong><span class="note">负责创建、配置、运营和持续优化智能体</span></div>
   <div class="card"><small>使用者</small><strong>普通用户</strong><span class="note">关注是否好用、有效、可靠，能否真正完成任务</span></div>
 </div>

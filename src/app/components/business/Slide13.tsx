@@ -5,7 +5,7 @@ import { BusinessSectionShell } from '@/app/components/business/BusinessSectionS
 const roles = [
   {
     icon: ShieldCheck,
-    title: '治理者',
+    title: '管理者',
     desc: '系统管理员，关注平台稳定、权限边界、统一治理。'
   },
   {
@@ -49,7 +49,7 @@ export function Slide13() {
           className="text-center mb-7"
         >
           <h2 className="text-4xl font-bold text-[#282562] mb-3">平台中的角色，以及建设者负责什么</h2>
-          <p className="text-lg text-[#6f6a86]">平台中通常有治理者、建设者和使用者三类角色，其中建设者负责把智能体真正建设和运营起来</p>
+          <p className="text-lg text-[#6f6a86]">平台中通常有管理者、建设者和使用者三类角色，其中建设者负责把智能体真正建设和运营起来</p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto mb-6">
