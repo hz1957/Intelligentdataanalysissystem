@@ -50,7 +50,7 @@ export function Slide1() {
           transition={{ duration: 0.6, delay: 0.35 }}
           className="text-2xl text-[#c8242b] font-medium mb-4"
         >
-          面向业务任务的智能体工作平台
+          面向企业的智能体建设与运营平台
         </motion.p>
 
         <motion.p

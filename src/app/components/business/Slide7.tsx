@@ -5,7 +5,7 @@ import { BusinessSectionShell } from '@/app/components/business/BusinessSectionS
 const parts = [
   {
     icon: AppWindow,
-    title: '交互与入口',
+    title: '使用入口',
     desc: '用户在这里提出任务，并查看系统返回的结果。'
   },
   {
@@ -15,23 +15,23 @@ const parts = [
   },
   {
     icon: BookOpenText,
-    title: '业务资料中心',
+    title: '知识与资料中心',
     desc: '统一管理制度、手册和参考文档，为输出提供专业依据。'
   },
   {
     icon: History,
-    title: '历史通信记录',
-    desc: '记录历史交互和使用偏好，帮助系统理解后续任务。'
+    title: '历史记录与记忆',
+    desc: '保留历史任务、使用偏好和可复用经验，帮助后续任务衔接。'
   },
   {
     icon: Wrench,
-    title: '工具服务桥梁',
-    desc: '打通内部系统接口和功能组件，便于按规则调用。'
+    title: '工具与系统连接',
+    desc: '连接内部系统接口和功能组件，支持按规则调用。'
   },
   {
     icon: ShieldCheck,
-    title: '安全合规治理',
-    desc: '管理权限边界、数据可见范围和风险控制要求。'
+    title: '权限与治理',
+    desc: '管理权限边界、数据范围和风险控制要求。'
   }
 ];
 
@@ -46,7 +46,7 @@ export function Slide7() {
           className="text-center mb-7"
         >
           <h2 className="text-4xl font-bold text-[#282562] mb-3">平台的核心组成</h2>
-          <p className="text-lg text-[#6f6a86]">由交互入口、资料管理、工具接入和安全控制等部分共同支撑运行</p>
+          <p className="text-lg text-[#6f6a86]">由使用入口、工作空间、资料管理、系统连接和治理能力共同支撑运行</p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 max-w-5xl mx-auto">
@@ -74,11 +74,11 @@ export function Slide7() {
           className="mt-6 mx-auto max-w-5xl rounded-[26px] border border-[#d9d4e6] bg-[#f8f6fb] px-5 py-4 shadow-[0_14px_32px_rgba(40,37,98,0.06)]"
         >
           <div className="flex flex-col items-center justify-center gap-3 text-center md:flex-row md:text-left">
-            <span className="text-sm font-medium text-slate-600">自然语言提交业务目标输入</span>
+            <span className="text-sm font-medium text-slate-600">用户提出任务</span>
             <ArrowRight className="h-4 w-4 text-[#C8242B]" />
-            <span className="text-sm font-medium text-slate-600">系统匹配可用资料与工具</span>
+            <span className="text-sm font-medium text-slate-600">平台组织资料与工具</span>
             <ArrowRight className="h-4 w-4 text-[#C8242B]" />
-            <span className="text-sm font-medium text-slate-600">生成结果并完成留存</span>
+            <span className="text-sm font-medium text-slate-600">形成结果并沉淀经验</span>
           </div>
         </motion.div>
       </div>
